@@ -1,33 +1,36 @@
-
-import redisClient from './config/redis.js';
-import express from 'express';
-import eoidc from 'express-openid-connect'; // <-- Default import
+import express, { Request, Response } from 'express';
+import eoidc from 'express-openid-connect';
 const { auth, requiresAuth } = eoidc; // <-- Destructure from default
-import config from './config/index.js';;    // ← note “.js” here
+import config from './config/index.js'; // Assuming your config is JS (can be TS too)
+import { getRedisClient } from './config/redis.js';
+
 
 const app = express();
 
-// attach /login, /logout, /callback
+// Middleware: Auth routes - login, logout, callback
 app.use(auth(config.auth0));
 
 
-(async () => {
-  await redisClient.set('testKey', 'Hello, Redis!');
-  const value = await redisClient.get('testKey');
-  console.log(value); // Should output: 'Hello, Redis!'
-})();
+async function someFunction() {
+  const redis = await getRedisClient();
+  await redis.set('key', 'value');
+}
 
-
-
-app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+// Home route
+app.get('/', (req: Request, res: Response) => {
+  const isAuthenticated = req.oidc?.isAuthenticated?.();
+  res.send(isAuthenticated ? 'Logged in' : 'Logged out');
 });
 
-app.get('/profile', requiresAuth(), (req, res) => {
-  res.json(req.oidc.user);
+// Protected profile route
+app.get('/profile', requiresAuth(), (req: Request, res: Response) => {
+  res.json(req.oidc?.user);
 });
 
+someFunction()
+// Server init
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
+
