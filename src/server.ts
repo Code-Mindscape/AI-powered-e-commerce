@@ -1,36 +1,93 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import eoidc from 'express-openid-connect';
-const { auth, requiresAuth } = eoidc; // <-- Destructure from default
-import config from './config/index.js'; // Assuming your config is JS (can be TS too)
+import config from './config/index.js';
 import { getRedisClient } from './config/redis.js';
 
+const { auth, requiresAuth } = eoidc;
 
+// Initialize Express
 const app = express();
 
-// Middleware: Auth routes - login, logout, callback
-app.use(auth(config.auth0));
+// Basic security headers middleware
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  next();
+});
 
-
-async function someFunction() {
-  const redis = await getRedisClient();
-  await redis.set('key', 'value');
+// Verify Auth0 configuration exists
+if (!config.auth0?.clientID || !config.auth0?.issuerBaseURL) {
+  console.error('❌ Missing Auth0 configuration');
+  process.exit(1);
 }
 
-// Home route
-app.get('/', (req: Request, res: Response) => {
-  const isAuthenticated = req.oidc?.isAuthenticated?.();
-  res.send(isAuthenticated ? 'Logged in' : 'Logged out');
+// Auth middleware
+app.use(auth(config.auth0));
+
+// Simple Redis connection wrapper
+async function initializeRedis() {
+  try {
+    const redis = await getRedisClient();
+    await redis.set('server-status', 'active');
+    console.log('✅ Redis connected');
+    return redis;
+  } catch (error) {
+    console.error('❌ Redis connection failed:', error);
+    process.exit(1);
+  }
+}
+
+// Routes
+app.get('/', (req, res) => {
+  res.json({
+    status: 'running',
+    authenticated: req.oidc?.isAuthenticated?.() || false
+  });
 });
 
-// Protected profile route
-app.get('/profile', requiresAuth(), (req: Request, res: Response) => {
-  res.json(req.oidc?.user);
+app.get('/profile', requiresAuth(), (req, res) => {
+  // Basic protection: don't expose full access token
+  const { user, accessToken } = req.oidc;
+  res.json({
+    user,
+    hasToken: !!accessToken?.access_token
+  });
 });
 
-someFunction()
-// Server init
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+// Error handling middleware
+app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('⚠️ Error:', err.stack);
+  res.status(500).json({ error: 'Something went wrong' });
 });
 
+// Server startup
+async function startServer() {
+  const PORT = process.env.PORT || 3000;
+  
+  try {
+    // Connect to Redis first
+    const redis = await initializeRedis();
+    
+    // Graceful shutdown handler
+    const shutdown = async () => {
+      console.log('🛑 Shutting down...');
+      await redis.quit();
+      process.exit(0);
+    };
+
+    process.on('SIGINT', shutdown);
+    process.on('SIGTERM', shutdown);
+
+    // Start server
+    app.listen(PORT, () => {
+      console.log(`✅ Server running on http://localhost:${PORT}`);
+    });
+
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+}
+
+// Start the application
+startServer();
