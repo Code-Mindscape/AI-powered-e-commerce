@@ -1,30 +1,14 @@
-import express from 'express';
+// server.ts
+import app from './app.js';
 import eoidc from 'express-openid-connect';
-import config from './config/index.js';
-import { getRedisClient } from './config/redis.js';
-
 const { auth, requiresAuth } = eoidc;
+import express from 'express';
+import config from './config/index.js';
+import { getRedisClient } from './config/redis.js'
 
-// Initialize Express
-const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Basic security headers middleware
-app.use((req, res, next) => {
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  next();
-});
-
-// Verify Auth0 configuration exists
-if (!config.auth0?.clientID || !config.auth0?.issuerBaseURL) {
-  console.error('❌ Missing Auth0 configuration');
-  process.exit(1);
-}
-
-// Auth middleware
-app.use(auth(config.auth0));
-
-// Simple Redis connection wrapper
+// Initialize Redis
 async function initializeRedis() {
   try {
     const redis = await getRedisClient();
@@ -37,16 +21,17 @@ async function initializeRedis() {
   }
 }
 
-// Routes
-app.get('/', (req, res) => {
-  res.json({
-    status: 'running',
-    authenticated: req.oidc?.isAuthenticated?.() || false
-  });
-});
+// Verify Auth0 configuration
+if (!config.auth0?.clientID || !config.auth0?.issuerBaseURL) {
+  console.error('❌ Missing Auth0 configuration');
+  process.exit(1);
+}
 
-app.get('/profile', requiresAuth(), (req, res) => {
-  // Basic protection: don't expose full access token
+// Auth0 middleware
+app.use(auth(config.auth0));
+
+// Protected route example
+app.get('/profile', requiresAuth(), (req: express.Request, res: express.Response) => {
   const { user, accessToken } = req.oidc;
   res.json({
     user,
@@ -54,40 +39,27 @@ app.get('/profile', requiresAuth(), (req, res) => {
   });
 });
 
-// Error handling middleware
-app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error('⚠️ Error:', err.stack);
-  res.status(500).json({ error: 'Something went wrong' });
-});
-
-// Server startup
+// Start the server
 async function startServer() {
-  const PORT = process.env.PORT || 3000;
-  
-  try {
-    // Connect to Redis first
-    const redis = await initializeRedis();
-    
-    // Graceful shutdown handler
-    const shutdown = async () => {
-      console.log('🛑 Shutting down...');
-      await redis.quit();
+  const redis = await initializeRedis();
+
+  const server = app.listen(PORT, () => {
+    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
+
+  // Graceful shutdown
+  const shutdown = async () => {
+    console.log('🛑 Shutting down...');
+    await redis.quit();
+    server.close(() => {
+      console.log('Server closed');
       process.exit(0);
-    };
-
-    process.on('SIGINT', shutdown);
-    process.on('SIGTERM', shutdown);
-
-    // Start server
-    app.listen(PORT, () => {
-      console.log(`✅ Server running on http://localhost:${PORT}`);
     });
+  };
 
-  } catch (error) {
-    console.error('❌ Failed to start server:', error);
-    process.exit(1);
-  }
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
 }
 
-// Start the application
 startServer();

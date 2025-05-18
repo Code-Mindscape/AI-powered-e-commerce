@@ -1,16 +1,19 @@
+// app.ts
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import productsRouter from './routes/products.route.js'; // Make sure this path matches your file structure
+import productsRouter from './routes/products.route.js'; // Adjust the path as needed
+import categoriesRouter from './routes/categories.route.js'; // Adjust the path as needed
 
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // API Routes
 app.use('/api/products', productsRouter);
+app.use('/api/categories', categoriesRouter);
 
 // Health Check Endpoint
 app.get('/health', (req: Request, res: Response) => {
@@ -31,11 +34,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-// Server Configuration
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
-
-export default app; // For testing purposes
+export default app;
