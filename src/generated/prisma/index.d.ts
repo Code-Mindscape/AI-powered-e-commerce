@@ -79,16 +79,6 @@ export type Review = $Result.DefaultSelection<Prisma.$ReviewPayload>
  */
 export type Promotion = $Result.DefaultSelection<Prisma.$PromotionPayload>
 /**
- * Model Seller
- * 
- */
-export type Seller = $Result.DefaultSelection<Prisma.$SellerPayload>
-/**
- * Model Supplier
- * 
- */
-export type Supplier = $Result.DefaultSelection<Prisma.$SupplierPayload>
-/**
  * Model Inventory
  * 
  */
@@ -358,26 +348,6 @@ export class PrismaClient<
     * ```
     */
   get promotion(): Prisma.PromotionDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.seller`: Exposes CRUD operations for the **Seller** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Sellers
-    * const sellers = await prisma.seller.findMany()
-    * ```
-    */
-  get seller(): Prisma.SellerDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.supplier`: Exposes CRUD operations for the **Supplier** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Suppliers
-    * const suppliers = await prisma.supplier.findMany()
-    * ```
-    */
-  get supplier(): Prisma.SupplierDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.inventory`: Exposes CRUD operations for the **Inventory** model.
@@ -861,8 +831,6 @@ export namespace Prisma {
     WishlistItem: 'WishlistItem',
     Review: 'Review',
     Promotion: 'Promotion',
-    Seller: 'Seller',
-    Supplier: 'Supplier',
     Inventory: 'Inventory',
     CustomerSupportTicket: 'CustomerSupportTicket',
     UserRole: 'UserRole'
@@ -884,7 +852,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "customer" | "product" | "category" | "order" | "orderItem" | "payment" | "shipment" | "cart" | "cartItem" | "wishlist" | "wishlistItem" | "review" | "promotion" | "seller" | "supplier" | "inventory" | "customerSupportTicket" | "userRole"
+      modelProps: "customer" | "product" | "category" | "order" | "orderItem" | "payment" | "shipment" | "cart" | "cartItem" | "wishlist" | "wishlistItem" | "review" | "promotion" | "inventory" | "customerSupportTicket" | "userRole"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1850,154 +1818,6 @@ export namespace Prisma {
           }
         }
       }
-      Seller: {
-        payload: Prisma.$SellerPayload<ExtArgs>
-        fields: Prisma.SellerFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SellerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SellerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          findFirst: {
-            args: Prisma.SellerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SellerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          findMany: {
-            args: Prisma.SellerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
-          create: {
-            args: Prisma.SellerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          createMany: {
-            args: Prisma.SellerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SellerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
-          delete: {
-            args: Prisma.SellerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          update: {
-            args: Prisma.SellerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          deleteMany: {
-            args: Prisma.SellerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SellerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SellerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
-          upsert: {
-            args: Prisma.SellerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
-          aggregate: {
-            args: Prisma.SellerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSeller>
-          }
-          groupBy: {
-            args: Prisma.SellerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SellerGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SellerCountArgs<ExtArgs>
-            result: $Utils.Optional<SellerCountAggregateOutputType> | number
-          }
-        }
-      }
-      Supplier: {
-        payload: Prisma.$SupplierPayload<ExtArgs>
-        fields: Prisma.SupplierFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SupplierFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SupplierFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          findFirst: {
-            args: Prisma.SupplierFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SupplierFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          findMany: {
-            args: Prisma.SupplierFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>[]
-          }
-          create: {
-            args: Prisma.SupplierCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          createMany: {
-            args: Prisma.SupplierCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SupplierCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>[]
-          }
-          delete: {
-            args: Prisma.SupplierDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          update: {
-            args: Prisma.SupplierUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          deleteMany: {
-            args: Prisma.SupplierDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SupplierUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SupplierUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>[]
-          }
-          upsert: {
-            args: Prisma.SupplierUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SupplierPayload>
-          }
-          aggregate: {
-            args: Prisma.SupplierAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSupplier>
-          }
-          groupBy: {
-            args: Prisma.SupplierGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SupplierGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SupplierCountArgs<ExtArgs>
-            result: $Utils.Optional<SupplierCountAggregateOutputType> | number
-          }
-        }
-      }
       Inventory: {
         payload: Prisma.$InventoryPayload<ExtArgs>
         fields: Prisma.InventoryFieldRefs
@@ -2317,8 +2137,6 @@ export namespace Prisma {
     wishlistItem?: WishlistItemOmit
     review?: ReviewOmit
     promotion?: PromotionOmit
-    seller?: SellerOmit
-    supplier?: SupplierOmit
     inventory?: InventoryOmit
     customerSupportTicket?: CustomerSupportTicketOmit
     userRole?: UserRoleOmit
@@ -2639,68 +2457,6 @@ export namespace Prisma {
    */
   export type WishlistCountOutputTypeCountWishlistItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WishlistItemWhereInput
-  }
-
-
-  /**
-   * Count Type SellerCountOutputType
-   */
-
-  export type SellerCountOutputType = {
-    products: number
-  }
-
-  export type SellerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | SellerCountOutputTypeCountProductsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * SellerCountOutputType without action
-   */
-  export type SellerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SellerCountOutputType
-     */
-    select?: SellerCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * SellerCountOutputType without action
-   */
-  export type SellerCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
-  }
-
-
-  /**
-   * Count Type SupplierCountOutputType
-   */
-
-  export type SupplierCountOutputType = {
-    products: number
-  }
-
-  export type SupplierCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | SupplierCountOutputTypeCountProductsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * SupplierCountOutputType without action
-   */
-  export type SupplierCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the SupplierCountOutputType
-     */
-    select?: SupplierCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * SupplierCountOutputType without action
-   */
-  export type SupplierCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProductWhereInput
   }
 
 
@@ -3970,8 +3726,6 @@ export namespace Prisma {
     price: number | null
     stock: number | null
     categoryId: number | null
-    sellerId: number | null
-    supplierId: number | null
   }
 
   export type ProductSumAggregateOutputType = {
@@ -3979,8 +3733,6 @@ export namespace Prisma {
     price: number | null
     stock: number | null
     categoryId: number | null
-    sellerId: number | null
-    supplierId: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -3993,8 +3745,6 @@ export namespace Prisma {
     categoryId: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    sellerId: number | null
-    supplierId: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -4007,8 +3757,6 @@ export namespace Prisma {
     categoryId: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    sellerId: number | null
-    supplierId: number | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -4021,8 +3769,6 @@ export namespace Prisma {
     categoryId: number
     createdAt: number
     updatedAt: number
-    sellerId: number
-    supplierId: number
     _all: number
   }
 
@@ -4032,8 +3778,6 @@ export namespace Prisma {
     price?: true
     stock?: true
     categoryId?: true
-    sellerId?: true
-    supplierId?: true
   }
 
   export type ProductSumAggregateInputType = {
@@ -4041,8 +3785,6 @@ export namespace Prisma {
     price?: true
     stock?: true
     categoryId?: true
-    sellerId?: true
-    supplierId?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -4055,8 +3797,6 @@ export namespace Prisma {
     categoryId?: true
     createdAt?: true
     updatedAt?: true
-    sellerId?: true
-    supplierId?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -4069,8 +3809,6 @@ export namespace Prisma {
     categoryId?: true
     createdAt?: true
     updatedAt?: true
-    sellerId?: true
-    supplierId?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -4083,8 +3821,6 @@ export namespace Prisma {
     categoryId?: true
     createdAt?: true
     updatedAt?: true
-    sellerId?: true
-    supplierId?: true
     _all?: true
   }
 
@@ -4184,8 +3920,6 @@ export namespace Prisma {
     categoryId: number
     createdAt: Date
     updatedAt: Date
-    sellerId: number | null
-    supplierId: number | null
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -4217,16 +3951,12 @@ export namespace Prisma {
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sellerId?: boolean
-    supplierId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
     cartItems?: boolean | Product$cartItemsArgs<ExtArgs>
     wishlistItems?: boolean | Product$wishlistItemsArgs<ExtArgs>
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     inventory?: boolean | Product$inventoryArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -4240,11 +3970,7 @@ export namespace Prisma {
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sellerId?: boolean
-    supplierId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4257,11 +3983,7 @@ export namespace Prisma {
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sellerId?: boolean
-    supplierId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -4274,11 +3996,9 @@ export namespace Prisma {
     categoryId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sellerId?: boolean
-    supplierId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "name" | "description" | "price" | "stock" | "categoryId" | "createdAt" | "updatedAt" | "sellerId" | "supplierId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sku" | "name" | "description" | "price" | "stock" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
     orderItems?: boolean | Product$orderItemsArgs<ExtArgs>
@@ -4286,19 +4006,13 @@ export namespace Prisma {
     wishlistItems?: boolean | Product$wishlistItemsArgs<ExtArgs>
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     inventory?: boolean | Product$inventoryArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    seller?: boolean | Product$sellerArgs<ExtArgs>
-    supplier?: boolean | Product$supplierArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4310,8 +4024,6 @@ export namespace Prisma {
       wishlistItems: Prisma.$WishlistItemPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
       inventory: Prisma.$InventoryPayload<ExtArgs> | null
-      seller: Prisma.$SellerPayload<ExtArgs> | null
-      supplier: Prisma.$SupplierPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4323,8 +4035,6 @@ export namespace Prisma {
       categoryId: number
       createdAt: Date
       updatedAt: Date
-      sellerId: number | null
-      supplierId: number | null
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -4725,8 +4435,6 @@ export namespace Prisma {
     wishlistItems<T extends Product$wishlistItemsArgs<ExtArgs> = {}>(args?: Subset<T, Product$wishlistItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WishlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Product$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Product$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     inventory<T extends Product$inventoryArgs<ExtArgs> = {}>(args?: Subset<T, Product$inventoryArgs<ExtArgs>>): Prisma__InventoryClient<$Result.GetResult<Prisma.$InventoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    seller<T extends Product$sellerArgs<ExtArgs> = {}>(args?: Subset<T, Product$sellerArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    supplier<T extends Product$supplierArgs<ExtArgs> = {}>(args?: Subset<T, Product$supplierArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4765,8 +4473,6 @@ export namespace Prisma {
     readonly categoryId: FieldRef<"Product", 'Int'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
-    readonly sellerId: FieldRef<"Product", 'Int'>
-    readonly supplierId: FieldRef<"Product", 'Int'>
   }
     
 
@@ -5275,44 +4981,6 @@ export namespace Prisma {
      */
     include?: InventoryInclude<ExtArgs> | null
     where?: InventoryWhereInput
-  }
-
-  /**
-   * Product.seller
-   */
-  export type Product$sellerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    where?: SellerWhereInput
-  }
-
-  /**
-   * Product.supplier
-   */
-  export type Product$supplierArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    where?: SupplierWhereInput
   }
 
   /**
@@ -17700,2214 +17368,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Seller
-   */
-
-  export type AggregateSeller = {
-    _count: SellerCountAggregateOutputType | null
-    _avg: SellerAvgAggregateOutputType | null
-    _sum: SellerSumAggregateOutputType | null
-    _min: SellerMinAggregateOutputType | null
-    _max: SellerMaxAggregateOutputType | null
-  }
-
-  export type SellerAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type SellerSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type SellerMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    contactInfo: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SellerMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    contactInfo: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SellerCountAggregateOutputType = {
-    id: number
-    name: number
-    contactInfo: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type SellerAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type SellerSumAggregateInputType = {
-    id?: true
-  }
-
-  export type SellerMinAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SellerMaxAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SellerCountAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type SellerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Seller to aggregate.
-     */
-    where?: SellerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sellers to fetch.
-     */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: SellerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sellers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sellers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Sellers
-    **/
-    _count?: true | SellerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SellerAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SellerSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: SellerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: SellerMaxAggregateInputType
-  }
-
-  export type GetSellerAggregateType<T extends SellerAggregateArgs> = {
-        [P in keyof T & keyof AggregateSeller]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSeller[P]>
-      : GetScalarType<T[P], AggregateSeller[P]>
-  }
-
-
-
-
-  export type SellerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SellerWhereInput
-    orderBy?: SellerOrderByWithAggregationInput | SellerOrderByWithAggregationInput[]
-    by: SellerScalarFieldEnum[] | SellerScalarFieldEnum
-    having?: SellerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SellerCountAggregateInputType | true
-    _avg?: SellerAvgAggregateInputType
-    _sum?: SellerSumAggregateInputType
-    _min?: SellerMinAggregateInputType
-    _max?: SellerMaxAggregateInputType
-  }
-
-  export type SellerGroupByOutputType = {
-    id: number
-    name: string
-    contactInfo: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: SellerCountAggregateOutputType | null
-    _avg: SellerAvgAggregateOutputType | null
-    _sum: SellerSumAggregateOutputType | null
-    _min: SellerMinAggregateOutputType | null
-    _max: SellerMaxAggregateOutputType | null
-  }
-
-  type GetSellerGroupByPayload<T extends SellerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<SellerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SellerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SellerGroupByOutputType[P]>
-            : GetScalarType<T[P], SellerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type SellerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    products?: boolean | Seller$productsArgs<ExtArgs>
-    _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["seller"]>
-
-  export type SellerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["seller"]>
-
-  export type SellerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["seller"]>
-
-  export type SellerSelectScalar = {
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type SellerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactInfo" | "createdAt" | "updatedAt", ExtArgs["result"]["seller"]>
-  export type SellerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | Seller$productsArgs<ExtArgs>
-    _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type SellerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SellerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $SellerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Seller"
-    objects: {
-      products: Prisma.$ProductPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      contactInfo: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["seller"]>
-    composites: {}
-  }
-
-  type SellerGetPayload<S extends boolean | null | undefined | SellerDefaultArgs> = $Result.GetResult<Prisma.$SellerPayload, S>
-
-  type SellerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SellerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SellerCountAggregateInputType | true
-    }
-
-  export interface SellerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Seller'], meta: { name: 'Seller' } }
-    /**
-     * Find zero or one Seller that matches the filter.
-     * @param {SellerFindUniqueArgs} args - Arguments to find a Seller
-     * @example
-     * // Get one Seller
-     * const seller = await prisma.seller.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends SellerFindUniqueArgs>(args: SelectSubset<T, SellerFindUniqueArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Seller that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {SellerFindUniqueOrThrowArgs} args - Arguments to find a Seller
-     * @example
-     * // Get one Seller
-     * const seller = await prisma.seller.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends SellerFindUniqueOrThrowArgs>(args: SelectSubset<T, SellerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Seller that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerFindFirstArgs} args - Arguments to find a Seller
-     * @example
-     * // Get one Seller
-     * const seller = await prisma.seller.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends SellerFindFirstArgs>(args?: SelectSubset<T, SellerFindFirstArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Seller that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerFindFirstOrThrowArgs} args - Arguments to find a Seller
-     * @example
-     * // Get one Seller
-     * const seller = await prisma.seller.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends SellerFindFirstOrThrowArgs>(args?: SelectSubset<T, SellerFindFirstOrThrowArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Sellers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Sellers
-     * const sellers = await prisma.seller.findMany()
-     * 
-     * // Get first 10 Sellers
-     * const sellers = await prisma.seller.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const sellerWithIdOnly = await prisma.seller.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends SellerFindManyArgs>(args?: SelectSubset<T, SellerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Seller.
-     * @param {SellerCreateArgs} args - Arguments to create a Seller.
-     * @example
-     * // Create one Seller
-     * const Seller = await prisma.seller.create({
-     *   data: {
-     *     // ... data to create a Seller
-     *   }
-     * })
-     * 
-     */
-    create<T extends SellerCreateArgs>(args: SelectSubset<T, SellerCreateArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Sellers.
-     * @param {SellerCreateManyArgs} args - Arguments to create many Sellers.
-     * @example
-     * // Create many Sellers
-     * const seller = await prisma.seller.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends SellerCreateManyArgs>(args?: SelectSubset<T, SellerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Sellers and returns the data saved in the database.
-     * @param {SellerCreateManyAndReturnArgs} args - Arguments to create many Sellers.
-     * @example
-     * // Create many Sellers
-     * const seller = await prisma.seller.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Sellers and only return the `id`
-     * const sellerWithIdOnly = await prisma.seller.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SellerCreateManyAndReturnArgs>(args?: SelectSubset<T, SellerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Seller.
-     * @param {SellerDeleteArgs} args - Arguments to delete one Seller.
-     * @example
-     * // Delete one Seller
-     * const Seller = await prisma.seller.delete({
-     *   where: {
-     *     // ... filter to delete one Seller
-     *   }
-     * })
-     * 
-     */
-    delete<T extends SellerDeleteArgs>(args: SelectSubset<T, SellerDeleteArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Seller.
-     * @param {SellerUpdateArgs} args - Arguments to update one Seller.
-     * @example
-     * // Update one Seller
-     * const seller = await prisma.seller.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends SellerUpdateArgs>(args: SelectSubset<T, SellerUpdateArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Sellers.
-     * @param {SellerDeleteManyArgs} args - Arguments to filter Sellers to delete.
-     * @example
-     * // Delete a few Sellers
-     * const { count } = await prisma.seller.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends SellerDeleteManyArgs>(args?: SelectSubset<T, SellerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Sellers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Sellers
-     * const seller = await prisma.seller.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends SellerUpdateManyArgs>(args: SelectSubset<T, SellerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Sellers and returns the data updated in the database.
-     * @param {SellerUpdateManyAndReturnArgs} args - Arguments to update many Sellers.
-     * @example
-     * // Update many Sellers
-     * const seller = await prisma.seller.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Sellers and only return the `id`
-     * const sellerWithIdOnly = await prisma.seller.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SellerUpdateManyAndReturnArgs>(args: SelectSubset<T, SellerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Seller.
-     * @param {SellerUpsertArgs} args - Arguments to update or create a Seller.
-     * @example
-     * // Update or create a Seller
-     * const seller = await prisma.seller.upsert({
-     *   create: {
-     *     // ... data to create a Seller
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Seller we want to update
-     *   }
-     * })
-     */
-    upsert<T extends SellerUpsertArgs>(args: SelectSubset<T, SellerUpsertArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Sellers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerCountArgs} args - Arguments to filter Sellers to count.
-     * @example
-     * // Count the number of Sellers
-     * const count = await prisma.seller.count({
-     *   where: {
-     *     // ... the filter for the Sellers we want to count
-     *   }
-     * })
-    **/
-    count<T extends SellerCountArgs>(
-      args?: Subset<T, SellerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], SellerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Seller.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends SellerAggregateArgs>(args: Subset<T, SellerAggregateArgs>): Prisma.PrismaPromise<GetSellerAggregateType<T>>
-
-    /**
-     * Group by Seller.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SellerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends SellerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SellerGroupByArgs['orderBy'] }
-        : { orderBy?: SellerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SellerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSellerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Seller model
-   */
-  readonly fields: SellerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Seller.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__SellerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    products<T extends Seller$productsArgs<ExtArgs> = {}>(args?: Subset<T, Seller$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Seller model
-   */
-  interface SellerFieldRefs {
-    readonly id: FieldRef<"Seller", 'Int'>
-    readonly name: FieldRef<"Seller", 'String'>
-    readonly contactInfo: FieldRef<"Seller", 'String'>
-    readonly createdAt: FieldRef<"Seller", 'DateTime'>
-    readonly updatedAt: FieldRef<"Seller", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Seller findUnique
-   */
-  export type SellerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter, which Seller to fetch.
-     */
-    where: SellerWhereUniqueInput
-  }
-
-  /**
-   * Seller findUniqueOrThrow
-   */
-  export type SellerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter, which Seller to fetch.
-     */
-    where: SellerWhereUniqueInput
-  }
-
-  /**
-   * Seller findFirst
-   */
-  export type SellerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter, which Seller to fetch.
-     */
-    where?: SellerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sellers to fetch.
-     */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Sellers.
-     */
-    cursor?: SellerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sellers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sellers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Sellers.
-     */
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
-
-  /**
-   * Seller findFirstOrThrow
-   */
-  export type SellerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter, which Seller to fetch.
-     */
-    where?: SellerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sellers to fetch.
-     */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Sellers.
-     */
-    cursor?: SellerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sellers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sellers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Sellers.
-     */
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
-
-  /**
-   * Seller findMany
-   */
-  export type SellerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter, which Sellers to fetch.
-     */
-    where?: SellerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sellers to fetch.
-     */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Sellers.
-     */
-    cursor?: SellerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sellers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sellers.
-     */
-    skip?: number
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
-
-  /**
-   * Seller create
-   */
-  export type SellerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Seller.
-     */
-    data: XOR<SellerCreateInput, SellerUncheckedCreateInput>
-  }
-
-  /**
-   * Seller createMany
-   */
-  export type SellerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Sellers.
-     */
-    data: SellerCreateManyInput | SellerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Seller createManyAndReturn
-   */
-  export type SellerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * The data used to create many Sellers.
-     */
-    data: SellerCreateManyInput | SellerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Seller update
-   */
-  export type SellerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Seller.
-     */
-    data: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>
-    /**
-     * Choose, which Seller to update.
-     */
-    where: SellerWhereUniqueInput
-  }
-
-  /**
-   * Seller updateMany
-   */
-  export type SellerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Sellers.
-     */
-    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>
-    /**
-     * Filter which Sellers to update
-     */
-    where?: SellerWhereInput
-    /**
-     * Limit how many Sellers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Seller updateManyAndReturn
-   */
-  export type SellerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * The data used to update Sellers.
-     */
-    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>
-    /**
-     * Filter which Sellers to update
-     */
-    where?: SellerWhereInput
-    /**
-     * Limit how many Sellers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Seller upsert
-   */
-  export type SellerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Seller to update in case it exists.
-     */
-    where: SellerWhereUniqueInput
-    /**
-     * In case the Seller found by the `where` argument doesn't exist, create a new Seller with this data.
-     */
-    create: XOR<SellerCreateInput, SellerUncheckedCreateInput>
-    /**
-     * In case the Seller was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>
-  }
-
-  /**
-   * Seller delete
-   */
-  export type SellerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-    /**
-     * Filter which Seller to delete.
-     */
-    where: SellerWhereUniqueInput
-  }
-
-  /**
-   * Seller deleteMany
-   */
-  export type SellerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Sellers to delete
-     */
-    where?: SellerWhereInput
-    /**
-     * Limit how many Sellers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Seller.products
-   */
-  export type Seller$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Product
-     */
-    select?: ProductSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Product
-     */
-    omit?: ProductOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
-    cursor?: ProductWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
-  }
-
-  /**
-   * Seller without action
-   */
-  export type SellerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Seller
-     */
-    select?: SellerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Seller
-     */
-    omit?: SellerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SellerInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Supplier
-   */
-
-  export type AggregateSupplier = {
-    _count: SupplierCountAggregateOutputType | null
-    _avg: SupplierAvgAggregateOutputType | null
-    _sum: SupplierSumAggregateOutputType | null
-    _min: SupplierMinAggregateOutputType | null
-    _max: SupplierMaxAggregateOutputType | null
-  }
-
-  export type SupplierAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type SupplierSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type SupplierMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-    contactInfo: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SupplierMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-    contactInfo: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SupplierCountAggregateOutputType = {
-    id: number
-    name: number
-    contactInfo: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type SupplierAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type SupplierSumAggregateInputType = {
-    id?: true
-  }
-
-  export type SupplierMinAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SupplierMaxAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SupplierCountAggregateInputType = {
-    id?: true
-    name?: true
-    contactInfo?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type SupplierAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Supplier to aggregate.
-     */
-    where?: SupplierWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Suppliers to fetch.
-     */
-    orderBy?: SupplierOrderByWithRelationInput | SupplierOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: SupplierWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Suppliers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Suppliers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Suppliers
-    **/
-    _count?: true | SupplierCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: SupplierAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: SupplierSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: SupplierMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: SupplierMaxAggregateInputType
-  }
-
-  export type GetSupplierAggregateType<T extends SupplierAggregateArgs> = {
-        [P in keyof T & keyof AggregateSupplier]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSupplier[P]>
-      : GetScalarType<T[P], AggregateSupplier[P]>
-  }
-
-
-
-
-  export type SupplierGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SupplierWhereInput
-    orderBy?: SupplierOrderByWithAggregationInput | SupplierOrderByWithAggregationInput[]
-    by: SupplierScalarFieldEnum[] | SupplierScalarFieldEnum
-    having?: SupplierScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SupplierCountAggregateInputType | true
-    _avg?: SupplierAvgAggregateInputType
-    _sum?: SupplierSumAggregateInputType
-    _min?: SupplierMinAggregateInputType
-    _max?: SupplierMaxAggregateInputType
-  }
-
-  export type SupplierGroupByOutputType = {
-    id: number
-    name: string
-    contactInfo: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: SupplierCountAggregateOutputType | null
-    _avg: SupplierAvgAggregateOutputType | null
-    _sum: SupplierSumAggregateOutputType | null
-    _min: SupplierMinAggregateOutputType | null
-    _max: SupplierMaxAggregateOutputType | null
-  }
-
-  type GetSupplierGroupByPayload<T extends SupplierGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<SupplierGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SupplierGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SupplierGroupByOutputType[P]>
-            : GetScalarType<T[P], SupplierGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type SupplierSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    products?: boolean | Supplier$productsArgs<ExtArgs>
-    _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["supplier"]>
-
-  export type SupplierSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["supplier"]>
-
-  export type SupplierSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }, ExtArgs["result"]["supplier"]>
-
-  export type SupplierSelectScalar = {
-    id?: boolean
-    name?: boolean
-    contactInfo?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type SupplierOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "contactInfo" | "createdAt" | "updatedAt", ExtArgs["result"]["supplier"]>
-  export type SupplierInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | Supplier$productsArgs<ExtArgs>
-    _count?: boolean | SupplierCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type SupplierIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SupplierIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $SupplierPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Supplier"
-    objects: {
-      products: Prisma.$ProductPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-      contactInfo: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["supplier"]>
-    composites: {}
-  }
-
-  type SupplierGetPayload<S extends boolean | null | undefined | SupplierDefaultArgs> = $Result.GetResult<Prisma.$SupplierPayload, S>
-
-  type SupplierCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SupplierFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SupplierCountAggregateInputType | true
-    }
-
-  export interface SupplierDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Supplier'], meta: { name: 'Supplier' } }
-    /**
-     * Find zero or one Supplier that matches the filter.
-     * @param {SupplierFindUniqueArgs} args - Arguments to find a Supplier
-     * @example
-     * // Get one Supplier
-     * const supplier = await prisma.supplier.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends SupplierFindUniqueArgs>(args: SelectSubset<T, SupplierFindUniqueArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Supplier that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {SupplierFindUniqueOrThrowArgs} args - Arguments to find a Supplier
-     * @example
-     * // Get one Supplier
-     * const supplier = await prisma.supplier.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends SupplierFindUniqueOrThrowArgs>(args: SelectSubset<T, SupplierFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Supplier that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierFindFirstArgs} args - Arguments to find a Supplier
-     * @example
-     * // Get one Supplier
-     * const supplier = await prisma.supplier.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends SupplierFindFirstArgs>(args?: SelectSubset<T, SupplierFindFirstArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Supplier that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierFindFirstOrThrowArgs} args - Arguments to find a Supplier
-     * @example
-     * // Get one Supplier
-     * const supplier = await prisma.supplier.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends SupplierFindFirstOrThrowArgs>(args?: SelectSubset<T, SupplierFindFirstOrThrowArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Suppliers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Suppliers
-     * const suppliers = await prisma.supplier.findMany()
-     * 
-     * // Get first 10 Suppliers
-     * const suppliers = await prisma.supplier.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const supplierWithIdOnly = await prisma.supplier.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends SupplierFindManyArgs>(args?: SelectSubset<T, SupplierFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Supplier.
-     * @param {SupplierCreateArgs} args - Arguments to create a Supplier.
-     * @example
-     * // Create one Supplier
-     * const Supplier = await prisma.supplier.create({
-     *   data: {
-     *     // ... data to create a Supplier
-     *   }
-     * })
-     * 
-     */
-    create<T extends SupplierCreateArgs>(args: SelectSubset<T, SupplierCreateArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Suppliers.
-     * @param {SupplierCreateManyArgs} args - Arguments to create many Suppliers.
-     * @example
-     * // Create many Suppliers
-     * const supplier = await prisma.supplier.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends SupplierCreateManyArgs>(args?: SelectSubset<T, SupplierCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Suppliers and returns the data saved in the database.
-     * @param {SupplierCreateManyAndReturnArgs} args - Arguments to create many Suppliers.
-     * @example
-     * // Create many Suppliers
-     * const supplier = await prisma.supplier.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Suppliers and only return the `id`
-     * const supplierWithIdOnly = await prisma.supplier.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SupplierCreateManyAndReturnArgs>(args?: SelectSubset<T, SupplierCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Supplier.
-     * @param {SupplierDeleteArgs} args - Arguments to delete one Supplier.
-     * @example
-     * // Delete one Supplier
-     * const Supplier = await prisma.supplier.delete({
-     *   where: {
-     *     // ... filter to delete one Supplier
-     *   }
-     * })
-     * 
-     */
-    delete<T extends SupplierDeleteArgs>(args: SelectSubset<T, SupplierDeleteArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Supplier.
-     * @param {SupplierUpdateArgs} args - Arguments to update one Supplier.
-     * @example
-     * // Update one Supplier
-     * const supplier = await prisma.supplier.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends SupplierUpdateArgs>(args: SelectSubset<T, SupplierUpdateArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Suppliers.
-     * @param {SupplierDeleteManyArgs} args - Arguments to filter Suppliers to delete.
-     * @example
-     * // Delete a few Suppliers
-     * const { count } = await prisma.supplier.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends SupplierDeleteManyArgs>(args?: SelectSubset<T, SupplierDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Suppliers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Suppliers
-     * const supplier = await prisma.supplier.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends SupplierUpdateManyArgs>(args: SelectSubset<T, SupplierUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Suppliers and returns the data updated in the database.
-     * @param {SupplierUpdateManyAndReturnArgs} args - Arguments to update many Suppliers.
-     * @example
-     * // Update many Suppliers
-     * const supplier = await prisma.supplier.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Suppliers and only return the `id`
-     * const supplierWithIdOnly = await prisma.supplier.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SupplierUpdateManyAndReturnArgs>(args: SelectSubset<T, SupplierUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Supplier.
-     * @param {SupplierUpsertArgs} args - Arguments to update or create a Supplier.
-     * @example
-     * // Update or create a Supplier
-     * const supplier = await prisma.supplier.upsert({
-     *   create: {
-     *     // ... data to create a Supplier
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Supplier we want to update
-     *   }
-     * })
-     */
-    upsert<T extends SupplierUpsertArgs>(args: SelectSubset<T, SupplierUpsertArgs<ExtArgs>>): Prisma__SupplierClient<$Result.GetResult<Prisma.$SupplierPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Suppliers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierCountArgs} args - Arguments to filter Suppliers to count.
-     * @example
-     * // Count the number of Suppliers
-     * const count = await prisma.supplier.count({
-     *   where: {
-     *     // ... the filter for the Suppliers we want to count
-     *   }
-     * })
-    **/
-    count<T extends SupplierCountArgs>(
-      args?: Subset<T, SupplierCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], SupplierCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Supplier.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends SupplierAggregateArgs>(args: Subset<T, SupplierAggregateArgs>): Prisma.PrismaPromise<GetSupplierAggregateType<T>>
-
-    /**
-     * Group by Supplier.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SupplierGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends SupplierGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SupplierGroupByArgs['orderBy'] }
-        : { orderBy?: SupplierGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SupplierGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSupplierGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Supplier model
-   */
-  readonly fields: SupplierFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Supplier.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__SupplierClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    products<T extends Supplier$productsArgs<ExtArgs> = {}>(args?: Subset<T, Supplier$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Supplier model
-   */
-  interface SupplierFieldRefs {
-    readonly id: FieldRef<"Supplier", 'Int'>
-    readonly name: FieldRef<"Supplier", 'String'>
-    readonly contactInfo: FieldRef<"Supplier", 'String'>
-    readonly createdAt: FieldRef<"Supplier", 'DateTime'>
-    readonly updatedAt: FieldRef<"Supplier", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Supplier findUnique
-   */
-  export type SupplierFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter, which Supplier to fetch.
-     */
-    where: SupplierWhereUniqueInput
-  }
-
-  /**
-   * Supplier findUniqueOrThrow
-   */
-  export type SupplierFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter, which Supplier to fetch.
-     */
-    where: SupplierWhereUniqueInput
-  }
-
-  /**
-   * Supplier findFirst
-   */
-  export type SupplierFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter, which Supplier to fetch.
-     */
-    where?: SupplierWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Suppliers to fetch.
-     */
-    orderBy?: SupplierOrderByWithRelationInput | SupplierOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Suppliers.
-     */
-    cursor?: SupplierWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Suppliers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Suppliers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Suppliers.
-     */
-    distinct?: SupplierScalarFieldEnum | SupplierScalarFieldEnum[]
-  }
-
-  /**
-   * Supplier findFirstOrThrow
-   */
-  export type SupplierFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter, which Supplier to fetch.
-     */
-    where?: SupplierWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Suppliers to fetch.
-     */
-    orderBy?: SupplierOrderByWithRelationInput | SupplierOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Suppliers.
-     */
-    cursor?: SupplierWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Suppliers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Suppliers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Suppliers.
-     */
-    distinct?: SupplierScalarFieldEnum | SupplierScalarFieldEnum[]
-  }
-
-  /**
-   * Supplier findMany
-   */
-  export type SupplierFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter, which Suppliers to fetch.
-     */
-    where?: SupplierWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Suppliers to fetch.
-     */
-    orderBy?: SupplierOrderByWithRelationInput | SupplierOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Suppliers.
-     */
-    cursor?: SupplierWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Suppliers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Suppliers.
-     */
-    skip?: number
-    distinct?: SupplierScalarFieldEnum | SupplierScalarFieldEnum[]
-  }
-
-  /**
-   * Supplier create
-   */
-  export type SupplierCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Supplier.
-     */
-    data: XOR<SupplierCreateInput, SupplierUncheckedCreateInput>
-  }
-
-  /**
-   * Supplier createMany
-   */
-  export type SupplierCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Suppliers.
-     */
-    data: SupplierCreateManyInput | SupplierCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Supplier createManyAndReturn
-   */
-  export type SupplierCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * The data used to create many Suppliers.
-     */
-    data: SupplierCreateManyInput | SupplierCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Supplier update
-   */
-  export type SupplierUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Supplier.
-     */
-    data: XOR<SupplierUpdateInput, SupplierUncheckedUpdateInput>
-    /**
-     * Choose, which Supplier to update.
-     */
-    where: SupplierWhereUniqueInput
-  }
-
-  /**
-   * Supplier updateMany
-   */
-  export type SupplierUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Suppliers.
-     */
-    data: XOR<SupplierUpdateManyMutationInput, SupplierUncheckedUpdateManyInput>
-    /**
-     * Filter which Suppliers to update
-     */
-    where?: SupplierWhereInput
-    /**
-     * Limit how many Suppliers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Supplier updateManyAndReturn
-   */
-  export type SupplierUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * The data used to update Suppliers.
-     */
-    data: XOR<SupplierUpdateManyMutationInput, SupplierUncheckedUpdateManyInput>
-    /**
-     * Filter which Suppliers to update
-     */
-    where?: SupplierWhereInput
-    /**
-     * Limit how many Suppliers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Supplier upsert
-   */
-  export type SupplierUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Supplier to update in case it exists.
-     */
-    where: SupplierWhereUniqueInput
-    /**
-     * In case the Supplier found by the `where` argument doesn't exist, create a new Supplier with this data.
-     */
-    create: XOR<SupplierCreateInput, SupplierUncheckedCreateInput>
-    /**
-     * In case the Supplier was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<SupplierUpdateInput, SupplierUncheckedUpdateInput>
-  }
-
-  /**
-   * Supplier delete
-   */
-  export type SupplierDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-    /**
-     * Filter which Supplier to delete.
-     */
-    where: SupplierWhereUniqueInput
-  }
-
-  /**
-   * Supplier deleteMany
-   */
-  export type SupplierDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Suppliers to delete
-     */
-    where?: SupplierWhereInput
-    /**
-     * Limit how many Suppliers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Supplier.products
-   */
-  export type Supplier$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Product
-     */
-    select?: ProductSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Product
-     */
-    omit?: ProductOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
-    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
-    cursor?: ProductWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
-  }
-
-  /**
-   * Supplier without action
-   */
-  export type SupplierDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Supplier
-     */
-    select?: SupplierSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Supplier
-     */
-    omit?: SupplierOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SupplierInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Inventory
    */
 
@@ -23208,9 +20668,7 @@ export namespace Prisma {
     stock: 'stock',
     categoryId: 'categoryId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    sellerId: 'sellerId',
-    supplierId: 'supplierId'
+    updatedAt: 'updatedAt'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -23347,28 +20805,6 @@ export namespace Prisma {
   };
 
   export type PromotionScalarFieldEnum = (typeof PromotionScalarFieldEnum)[keyof typeof PromotionScalarFieldEnum]
-
-
-  export const SellerScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    contactInfo: 'contactInfo',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum]
-
-
-  export const SupplierScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    contactInfo: 'contactInfo',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
 
 
   export const InventoryScalarFieldEnum: {
@@ -23592,16 +21028,12 @@ export namespace Prisma {
     categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    sellerId?: IntNullableFilter<"Product"> | number | null
-    supplierId?: IntNullableFilter<"Product"> | number | null
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     orderItems?: OrderItemListRelationFilter
     cartItems?: CartItemListRelationFilter
     wishlistItems?: WishlistItemListRelationFilter
     reviews?: ReviewListRelationFilter
     inventory?: XOR<InventoryNullableScalarRelationFilter, InventoryWhereInput> | null
-    seller?: XOR<SellerNullableScalarRelationFilter, SellerWhereInput> | null
-    supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
   }
 
   export type ProductOrderByWithRelationInput = {
@@ -23614,16 +21046,12 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sellerId?: SortOrderInput | SortOrder
-    supplierId?: SortOrderInput | SortOrder
     category?: CategoryOrderByWithRelationInput
     orderItems?: OrderItemOrderByRelationAggregateInput
     cartItems?: CartItemOrderByRelationAggregateInput
     wishlistItems?: WishlistItemOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
     inventory?: InventoryOrderByWithRelationInput
-    seller?: SellerOrderByWithRelationInput
-    supplier?: SupplierOrderByWithRelationInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
@@ -23639,16 +21067,12 @@ export namespace Prisma {
     categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    sellerId?: IntNullableFilter<"Product"> | number | null
-    supplierId?: IntNullableFilter<"Product"> | number | null
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
     orderItems?: OrderItemListRelationFilter
     cartItems?: CartItemListRelationFilter
     wishlistItems?: WishlistItemListRelationFilter
     reviews?: ReviewListRelationFilter
     inventory?: XOR<InventoryNullableScalarRelationFilter, InventoryWhereInput> | null
-    seller?: XOR<SellerNullableScalarRelationFilter, SellerWhereInput> | null
-    supplier?: XOR<SupplierNullableScalarRelationFilter, SupplierWhereInput> | null
   }, "id" | "sku">
 
   export type ProductOrderByWithAggregationInput = {
@@ -23661,8 +21085,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sellerId?: SortOrderInput | SortOrder
-    supplierId?: SortOrderInput | SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -23683,8 +21105,6 @@ export namespace Prisma {
     categoryId?: IntWithAggregatesFilter<"Product"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
-    sellerId?: IntNullableWithAggregatesFilter<"Product"> | number | null
-    supplierId?: IntNullableWithAggregatesFilter<"Product"> | number | null
   }
 
   export type CategoryWhereInput = {
@@ -24398,120 +21818,6 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Promotion"> | Date | string
   }
 
-  export type SellerWhereInput = {
-    AND?: SellerWhereInput | SellerWhereInput[]
-    OR?: SellerWhereInput[]
-    NOT?: SellerWhereInput | SellerWhereInput[]
-    id?: IntFilter<"Seller"> | number
-    name?: StringFilter<"Seller"> | string
-    contactInfo?: StringNullableFilter<"Seller"> | string | null
-    createdAt?: DateTimeFilter<"Seller"> | Date | string
-    updatedAt?: DateTimeFilter<"Seller"> | Date | string
-    products?: ProductListRelationFilter
-  }
-
-  export type SellerOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    products?: ProductOrderByRelationAggregateInput
-  }
-
-  export type SellerWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: SellerWhereInput | SellerWhereInput[]
-    OR?: SellerWhereInput[]
-    NOT?: SellerWhereInput | SellerWhereInput[]
-    name?: StringFilter<"Seller"> | string
-    contactInfo?: StringNullableFilter<"Seller"> | string | null
-    createdAt?: DateTimeFilter<"Seller"> | Date | string
-    updatedAt?: DateTimeFilter<"Seller"> | Date | string
-    products?: ProductListRelationFilter
-  }, "id">
-
-  export type SellerOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: SellerCountOrderByAggregateInput
-    _avg?: SellerAvgOrderByAggregateInput
-    _max?: SellerMaxOrderByAggregateInput
-    _min?: SellerMinOrderByAggregateInput
-    _sum?: SellerSumOrderByAggregateInput
-  }
-
-  export type SellerScalarWhereWithAggregatesInput = {
-    AND?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[]
-    OR?: SellerScalarWhereWithAggregatesInput[]
-    NOT?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Seller"> | number
-    name?: StringWithAggregatesFilter<"Seller"> | string
-    contactInfo?: StringNullableWithAggregatesFilter<"Seller"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Seller"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Seller"> | Date | string
-  }
-
-  export type SupplierWhereInput = {
-    AND?: SupplierWhereInput | SupplierWhereInput[]
-    OR?: SupplierWhereInput[]
-    NOT?: SupplierWhereInput | SupplierWhereInput[]
-    id?: IntFilter<"Supplier"> | number
-    name?: StringFilter<"Supplier"> | string
-    contactInfo?: StringNullableFilter<"Supplier"> | string | null
-    createdAt?: DateTimeFilter<"Supplier"> | Date | string
-    updatedAt?: DateTimeFilter<"Supplier"> | Date | string
-    products?: ProductListRelationFilter
-  }
-
-  export type SupplierOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    products?: ProductOrderByRelationAggregateInput
-  }
-
-  export type SupplierWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: SupplierWhereInput | SupplierWhereInput[]
-    OR?: SupplierWhereInput[]
-    NOT?: SupplierWhereInput | SupplierWhereInput[]
-    name?: StringFilter<"Supplier"> | string
-    contactInfo?: StringNullableFilter<"Supplier"> | string | null
-    createdAt?: DateTimeFilter<"Supplier"> | Date | string
-    updatedAt?: DateTimeFilter<"Supplier"> | Date | string
-    products?: ProductListRelationFilter
-  }, "id">
-
-  export type SupplierOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: SupplierCountOrderByAggregateInput
-    _avg?: SupplierAvgOrderByAggregateInput
-    _max?: SupplierMaxOrderByAggregateInput
-    _min?: SupplierMinOrderByAggregateInput
-    _sum?: SupplierSumOrderByAggregateInput
-  }
-
-  export type SupplierScalarWhereWithAggregatesInput = {
-    AND?: SupplierScalarWhereWithAggregatesInput | SupplierScalarWhereWithAggregatesInput[]
-    OR?: SupplierScalarWhereWithAggregatesInput[]
-    NOT?: SupplierScalarWhereWithAggregatesInput | SupplierScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Supplier"> | number
-    name?: StringWithAggregatesFilter<"Supplier"> | string
-    contactInfo?: StringNullableWithAggregatesFilter<"Supplier"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Supplier"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Supplier"> | Date | string
-  }
-
   export type InventoryWhereInput = {
     AND?: InventoryWhereInput | InventoryWhereInput[]
     OR?: InventoryWhereInput[]
@@ -24803,8 +22109,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateInput = {
@@ -24817,8 +22121,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
@@ -24840,8 +22142,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateInput = {
@@ -24854,8 +22154,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
@@ -24873,8 +22171,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
   }
 
   export type ProductUpdateManyMutationInput = {
@@ -24897,8 +22193,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CategoryCreateInput = {
@@ -25579,120 +22873,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SellerCreateInput = {
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    products?: ProductCreateNestedManyWithoutSellerInput
-  }
-
-  export type SellerUncheckedCreateInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    products?: ProductUncheckedCreateNestedManyWithoutSellerInput
-  }
-
-  export type SellerUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    products?: ProductUpdateManyWithoutSellerNestedInput
-  }
-
-  export type SellerUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    products?: ProductUncheckedUpdateManyWithoutSellerNestedInput
-  }
-
-  export type SellerCreateManyInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SellerUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SellerUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SupplierCreateInput = {
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    products?: ProductCreateNestedManyWithoutSupplierInput
-  }
-
-  export type SupplierUncheckedCreateInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    products?: ProductUncheckedCreateNestedManyWithoutSupplierInput
-  }
-
-  export type SupplierUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    products?: ProductUpdateManyWithoutSupplierNestedInput
-  }
-
-  export type SupplierUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    products?: ProductUncheckedUpdateManyWithoutSupplierNestedInput
-  }
-
-  export type SupplierCreateManyInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SupplierUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SupplierUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type InventoryCreateInput = {
     quantity: number
     warehouseLocation?: string | null
@@ -26086,17 +23266,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type CategoryScalarRelationFilter = {
     is?: CategoryWhereInput
     isNot?: CategoryWhereInput
@@ -26125,16 +23294,6 @@ export namespace Prisma {
     isNot?: InventoryWhereInput | null
   }
 
-  export type SellerNullableScalarRelationFilter = {
-    is?: SellerWhereInput | null
-    isNot?: SellerWhereInput | null
-  }
-
-  export type SupplierNullableScalarRelationFilter = {
-    is?: SupplierWhereInput | null
-    isNot?: SupplierWhereInput | null
-  }
-
   export type OrderItemOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -26157,8 +23316,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sellerId?: SortOrder
-    supplierId?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -26166,8 +23323,6 @@ export namespace Prisma {
     price?: SortOrder
     stock?: SortOrder
     categoryId?: SortOrder
-    sellerId?: SortOrder
-    supplierId?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -26180,8 +23335,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sellerId?: SortOrder
-    supplierId?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -26194,8 +23347,6 @@ export namespace Prisma {
     categoryId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sellerId?: SortOrder
-    supplierId?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -26203,8 +23354,6 @@ export namespace Prisma {
     price?: SortOrder
     stock?: SortOrder
     categoryId?: SortOrder
-    sellerId?: SortOrder
-    supplierId?: SortOrder
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -26221,22 +23370,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type ProductListRelationFilter = {
@@ -26712,70 +23845,6 @@ export namespace Prisma {
     discountPercentage?: SortOrder
   }
 
-  export type SellerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SellerAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type SellerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SellerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SellerSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type SupplierCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SupplierAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type SupplierMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SupplierMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    contactInfo?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SupplierSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
   export type InventoryCountOrderByAggregateInput = {
     id?: SortOrder
     productId?: SortOrder
@@ -27137,18 +24206,6 @@ export namespace Prisma {
     connect?: InventoryWhereUniqueInput
   }
 
-  export type SellerCreateNestedOneWithoutProductsInput = {
-    create?: XOR<SellerCreateWithoutProductsInput, SellerUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutProductsInput
-    connect?: SellerWhereUniqueInput
-  }
-
-  export type SupplierCreateNestedOneWithoutProductsInput = {
-    create?: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: SupplierCreateOrConnectWithoutProductsInput
-    connect?: SupplierWhereUniqueInput
-  }
-
   export type OrderItemUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<OrderItemCreateWithoutProductInput, OrderItemUncheckedCreateWithoutProductInput> | OrderItemCreateWithoutProductInput[] | OrderItemUncheckedCreateWithoutProductInput[]
     connectOrCreate?: OrderItemCreateOrConnectWithoutProductInput | OrderItemCreateOrConnectWithoutProductInput[]
@@ -27263,34 +24320,6 @@ export namespace Prisma {
     delete?: InventoryWhereInput | boolean
     connect?: InventoryWhereUniqueInput
     update?: XOR<XOR<InventoryUpdateToOneWithWhereWithoutProductInput, InventoryUpdateWithoutProductInput>, InventoryUncheckedUpdateWithoutProductInput>
-  }
-
-  export type SellerUpdateOneWithoutProductsNestedInput = {
-    create?: XOR<SellerCreateWithoutProductsInput, SellerUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutProductsInput
-    upsert?: SellerUpsertWithoutProductsInput
-    disconnect?: SellerWhereInput | boolean
-    delete?: SellerWhereInput | boolean
-    connect?: SellerWhereUniqueInput
-    update?: XOR<XOR<SellerUpdateToOneWithWhereWithoutProductsInput, SellerUpdateWithoutProductsInput>, SellerUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type SupplierUpdateOneWithoutProductsNestedInput = {
-    create?: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
-    connectOrCreate?: SupplierCreateOrConnectWithoutProductsInput
-    upsert?: SupplierUpsertWithoutProductsInput
-    disconnect?: SupplierWhereInput | boolean
-    delete?: SupplierWhereInput | boolean
-    connect?: SupplierWhereUniqueInput
-    update?: XOR<XOR<SupplierUpdateToOneWithWhereWithoutProductsInput, SupplierUpdateWithoutProductsInput>, SupplierUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type OrderItemUncheckedUpdateManyWithoutProductNestedInput = {
@@ -27773,90 +24802,6 @@ export namespace Prisma {
     update?: XOR<XOR<CustomerUpdateToOneWithWhereWithoutReviewsInput, CustomerUpdateWithoutReviewsInput>, CustomerUncheckedUpdateWithoutReviewsInput>
   }
 
-  export type ProductCreateNestedManyWithoutSellerInput = {
-    create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
-    createMany?: ProductCreateManySellerInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUncheckedCreateNestedManyWithoutSellerInput = {
-    create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
-    createMany?: ProductCreateManySellerInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutSellerInput | ProductUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: ProductCreateManySellerInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutSellerInput | ProductUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutSellerInput | ProductUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
-  }
-
-  export type ProductUncheckedUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput> | ProductCreateWithoutSellerInput[] | ProductUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSellerInput | ProductCreateOrConnectWithoutSellerInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutSellerInput | ProductUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: ProductCreateManySellerInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutSellerInput | ProductUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutSellerInput | ProductUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
-  }
-
-  export type ProductCreateNestedManyWithoutSupplierInput = {
-    create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
-    createMany?: ProductCreateManySupplierInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUncheckedCreateNestedManyWithoutSupplierInput = {
-    create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
-    createMany?: ProductCreateManySupplierInputEnvelope
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-  }
-
-  export type ProductUpdateManyWithoutSupplierNestedInput = {
-    create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutSupplierInput | ProductUpsertWithWhereUniqueWithoutSupplierInput[]
-    createMany?: ProductCreateManySupplierInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutSupplierInput | ProductUpdateWithWhereUniqueWithoutSupplierInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutSupplierInput | ProductUpdateManyWithWhereWithoutSupplierInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
-  }
-
-  export type ProductUncheckedUpdateManyWithoutSupplierNestedInput = {
-    create?: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput> | ProductCreateWithoutSupplierInput[] | ProductUncheckedCreateWithoutSupplierInput[]
-    connectOrCreate?: ProductCreateOrConnectWithoutSupplierInput | ProductCreateOrConnectWithoutSupplierInput[]
-    upsert?: ProductUpsertWithWhereUniqueWithoutSupplierInput | ProductUpsertWithWhereUniqueWithoutSupplierInput[]
-    createMany?: ProductCreateManySupplierInputEnvelope
-    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
-    update?: ProductUpdateWithWhereUniqueWithoutSupplierInput | ProductUpdateWithWhereUniqueWithoutSupplierInput[]
-    updateMany?: ProductUpdateManyWithWhereWithoutSupplierInput | ProductUpdateManyWithWhereWithoutSupplierInput[]
-    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
-  }
-
   export type ProductCreateNestedOneWithoutInventoryInput = {
     create?: XOR<ProductCreateWithoutInventoryInput, ProductUncheckedCreateWithoutInventoryInput>
     connectOrCreate?: ProductCreateOrConnectWithoutInventoryInput
@@ -28035,33 +24980,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type OrderCreateWithoutCustomerInput = {
@@ -28469,46 +25387,6 @@ export namespace Prisma {
     create: XOR<InventoryCreateWithoutProductInput, InventoryUncheckedCreateWithoutProductInput>
   }
 
-  export type SellerCreateWithoutProductsInput = {
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SellerUncheckedCreateWithoutProductsInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SellerCreateOrConnectWithoutProductsInput = {
-    where: SellerWhereUniqueInput
-    create: XOR<SellerCreateWithoutProductsInput, SellerUncheckedCreateWithoutProductsInput>
-  }
-
-  export type SupplierCreateWithoutProductsInput = {
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SupplierUncheckedCreateWithoutProductsInput = {
-    id?: number
-    name: string
-    contactInfo?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SupplierCreateOrConnectWithoutProductsInput = {
-    where: SupplierWhereUniqueInput
-    create: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
-  }
-
   export type CategoryUpsertWithoutProductsInput = {
     update: XOR<CategoryUpdateWithoutProductsInput, CategoryUncheckedUpdateWithoutProductsInput>
     create: XOR<CategoryCreateWithoutProductsInput, CategoryUncheckedCreateWithoutProductsInput>
@@ -28661,58 +25539,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SellerUpsertWithoutProductsInput = {
-    update: XOR<SellerUpdateWithoutProductsInput, SellerUncheckedUpdateWithoutProductsInput>
-    create: XOR<SellerCreateWithoutProductsInput, SellerUncheckedCreateWithoutProductsInput>
-    where?: SellerWhereInput
-  }
-
-  export type SellerUpdateToOneWithWhereWithoutProductsInput = {
-    where?: SellerWhereInput
-    data: XOR<SellerUpdateWithoutProductsInput, SellerUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type SellerUpdateWithoutProductsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SellerUncheckedUpdateWithoutProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SupplierUpsertWithoutProductsInput = {
-    update: XOR<SupplierUpdateWithoutProductsInput, SupplierUncheckedUpdateWithoutProductsInput>
-    create: XOR<SupplierCreateWithoutProductsInput, SupplierUncheckedCreateWithoutProductsInput>
-    where?: SupplierWhereInput
-  }
-
-  export type SupplierUpdateToOneWithWhereWithoutProductsInput = {
-    where?: SupplierWhereInput
-    data: XOR<SupplierUpdateWithoutProductsInput, SupplierUncheckedUpdateWithoutProductsInput>
-  }
-
-  export type SupplierUpdateWithoutProductsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SupplierUncheckedUpdateWithoutProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    contactInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ProductCreateWithoutCategoryInput = {
     sku: string
     name: string
@@ -28726,8 +25552,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutCategoryInput = {
@@ -28739,8 +25563,6 @@ export namespace Prisma {
     stock: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
@@ -28787,8 +25609,6 @@ export namespace Prisma {
     categoryId?: IntFilter<"Product"> | number
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
-    sellerId?: IntNullableFilter<"Product"> | number | null
-    supplierId?: IntNullableFilter<"Product"> | number | null
   }
 
   export type CustomerCreateWithoutOrdersInput = {
@@ -29049,8 +25869,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutOrderItemsInput = {
@@ -29063,8 +25881,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
@@ -29134,8 +25950,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutOrderItemsInput = {
@@ -29148,8 +25962,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
@@ -29426,8 +26238,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutCartItemsInput = {
@@ -29440,8 +26250,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
@@ -29501,8 +26309,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCartItemsInput = {
@@ -29515,8 +26321,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
@@ -29667,8 +26471,6 @@ export namespace Prisma {
     cartItems?: CartItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutWishlistItemsInput = {
@@ -29681,8 +26483,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
@@ -29742,8 +26542,6 @@ export namespace Prisma {
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutWishlistItemsInput = {
@@ -29756,8 +26554,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
@@ -29777,8 +26573,6 @@ export namespace Prisma {
     cartItems?: CartItemCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutReviewsInput = {
@@ -29791,8 +26585,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
@@ -29862,8 +26654,6 @@ export namespace Prisma {
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutReviewsInput = {
@@ -29876,8 +26666,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
@@ -29924,128 +26712,6 @@ export namespace Prisma {
     supportTickets?: CustomerSupportTicketUncheckedUpdateManyWithoutCustomerNestedInput
   }
 
-  export type ProductCreateWithoutSellerInput = {
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
-    orderItems?: OrderItemCreateNestedManyWithoutProductInput
-    cartItems?: CartItemCreateNestedManyWithoutProductInput
-    wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
-    reviews?: ReviewCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedOneWithoutProductInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
-  }
-
-  export type ProductUncheckedCreateWithoutSellerInput = {
-    id?: number
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    categoryId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    supplierId?: number | null
-    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
-    cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
-    wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedOneWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutSellerInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput>
-  }
-
-  export type ProductCreateManySellerInputEnvelope = {
-    data: ProductCreateManySellerInput | ProductCreateManySellerInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProductUpsertWithWhereUniqueWithoutSellerInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutSellerInput, ProductUncheckedUpdateWithoutSellerInput>
-    create: XOR<ProductCreateWithoutSellerInput, ProductUncheckedCreateWithoutSellerInput>
-  }
-
-  export type ProductUpdateWithWhereUniqueWithoutSellerInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutSellerInput, ProductUncheckedUpdateWithoutSellerInput>
-  }
-
-  export type ProductUpdateManyWithWhereWithoutSellerInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutSellerInput>
-  }
-
-  export type ProductCreateWithoutSupplierInput = {
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    category: CategoryCreateNestedOneWithoutProductsInput
-    orderItems?: OrderItemCreateNestedManyWithoutProductInput
-    cartItems?: CartItemCreateNestedManyWithoutProductInput
-    wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
-    reviews?: ReviewCreateNestedManyWithoutProductInput
-    inventory?: InventoryCreateNestedOneWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-  }
-
-  export type ProductUncheckedCreateWithoutSupplierInput = {
-    id?: number
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    categoryId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sellerId?: number | null
-    orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
-    cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
-    wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
-    reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
-    inventory?: InventoryUncheckedCreateNestedOneWithoutProductInput
-  }
-
-  export type ProductCreateOrConnectWithoutSupplierInput = {
-    where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput>
-  }
-
-  export type ProductCreateManySupplierInputEnvelope = {
-    data: ProductCreateManySupplierInput | ProductCreateManySupplierInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type ProductUpsertWithWhereUniqueWithoutSupplierInput = {
-    where: ProductWhereUniqueInput
-    update: XOR<ProductUpdateWithoutSupplierInput, ProductUncheckedUpdateWithoutSupplierInput>
-    create: XOR<ProductCreateWithoutSupplierInput, ProductUncheckedCreateWithoutSupplierInput>
-  }
-
-  export type ProductUpdateWithWhereUniqueWithoutSupplierInput = {
-    where: ProductWhereUniqueInput
-    data: XOR<ProductUpdateWithoutSupplierInput, ProductUncheckedUpdateWithoutSupplierInput>
-  }
-
-  export type ProductUpdateManyWithWhereWithoutSupplierInput = {
-    where: ProductScalarWhereInput
-    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutSupplierInput>
-  }
-
   export type ProductCreateWithoutInventoryInput = {
     sku: string
     name: string
@@ -30059,8 +26725,6 @@ export namespace Prisma {
     cartItems?: CartItemCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
-    seller?: SellerCreateNestedOneWithoutProductsInput
-    supplier?: SupplierCreateNestedOneWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutInventoryInput = {
@@ -30073,8 +26737,6 @@ export namespace Prisma {
     categoryId: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
     orderItems?: OrderItemUncheckedCreateNestedManyWithoutProductInput
     cartItems?: CartItemUncheckedCreateNestedManyWithoutProductInput
     wishlistItems?: WishlistItemUncheckedCreateNestedManyWithoutProductInput
@@ -30110,8 +26772,6 @@ export namespace Prisma {
     cartItems?: CartItemUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutInventoryInput = {
@@ -30124,8 +26784,6 @@ export namespace Prisma {
     categoryId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
@@ -30462,8 +27120,6 @@ export namespace Prisma {
     stock: number
     createdAt?: Date | string
     updatedAt?: Date | string
-    sellerId?: number | null
-    supplierId?: number | null
   }
 
   export type ProductUpdateWithoutCategoryInput = {
@@ -30479,8 +27135,6 @@ export namespace Prisma {
     wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
     inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutCategoryInput = {
@@ -30492,8 +27146,6 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
     orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
     cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
     wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
@@ -30510,8 +27162,6 @@ export namespace Prisma {
     stock?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type OrderItemCreateManyOrderInput = {
@@ -30605,128 +27255,6 @@ export namespace Prisma {
     productId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type ProductCreateManySellerInput = {
-    id?: number
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    categoryId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    supplierId?: number | null
-  }
-
-  export type ProductUpdateWithoutSellerInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
-    cartItems?: CartItemUpdateManyWithoutProductNestedInput
-    wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateOneWithoutProductNestedInput
-    supplier?: SupplierUpdateOneWithoutProductsNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutSellerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
-    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
-    cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
-    wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateOneWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateManyWithoutSellerInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    supplierId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type ProductCreateManySupplierInput = {
-    id?: number
-    sku: string
-    name: string
-    description?: string | null
-    price: number
-    stock: number
-    categoryId: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sellerId?: number | null
-  }
-
-  export type ProductUpdateWithoutSupplierInput = {
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    orderItems?: OrderItemUpdateManyWithoutProductNestedInput
-    cartItems?: CartItemUpdateManyWithoutProductNestedInput
-    wishlistItems?: WishlistItemUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUpdateOneWithoutProductNestedInput
-    seller?: SellerUpdateOneWithoutProductsNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutSupplierInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
-    orderItems?: OrderItemUncheckedUpdateManyWithoutProductNestedInput
-    cartItems?: CartItemUncheckedUpdateManyWithoutProductNestedInput
-    wishlistItems?: WishlistItemUncheckedUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
-    inventory?: InventoryUncheckedUpdateOneWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateManyWithoutSupplierInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    sku?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    price?: FloatFieldUpdateOperationsInput | number
-    stock?: IntFieldUpdateOperationsInput | number
-    categoryId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sellerId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
 

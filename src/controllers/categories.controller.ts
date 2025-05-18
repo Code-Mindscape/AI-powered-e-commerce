@@ -4,23 +4,34 @@ import { PrismaClient } from '../generated/prisma/client.js';
 const prisma = new PrismaClient();
 
 // Create a new category
-const createCategory = async (req: Request, res: Response, next: NextFunction) => {
+const createCategories = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { name, description } = req.body;
+    const categories = req.body; // expecting an array of objects [{name, description}, ...]
 
-    if (!name) {
-      res.status(400).json({ message: 'Category name is required' });
+    if (!Array.isArray(categories) || categories.length === 0) {
+      res.status(400).json({ message: 'An array of categories is required' });
       return;
     }
 
-    const category = await prisma.category.create({
-      data: {
-        name,
-        description: description || undefined,
-      },
-    });
+    // Validate each category has a name
+    for (const category of categories) {
+      if (!category.name) {
+        res.status(400).json({ message: 'Each category must have a name' });
+        return;
+      }
+    }
 
-    res.status(201).json(category);
+    // Create categories in a transaction (atomic operation)
+    const createdCategories = await prisma.$transaction(
+      categories.map(cat => prisma.category.create({
+        data: {
+          name: cat.name,
+          description: cat.description || undefined,
+        }
+      }))
+    );
+
+    res.status(201).json(createdCategories);
   } catch (error) {
     next(error);
   }
@@ -126,7 +137,7 @@ const searchCategories = async (req: Request, res: Response, next: NextFunction)
 
 // Export all handlers
 export {
-  createCategory,
+  createCategories,
   getCategories,
   getCategoryById,
   updateCategory,

@@ -140,9 +140,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   stock: 'stock',
   categoryId: 'categoryId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  sellerId: 'sellerId',
-  supplierId: 'supplierId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -245,22 +243,6 @@ exports.Prisma.PromotionScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.SellerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  contactInfo: 'contactInfo',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.SupplierScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  contactInfo: 'contactInfo',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.InventoryScalarFieldEnum = {
   id: 'id',
   productId: 'productId',
@@ -318,8 +300,6 @@ exports.Prisma.ModelName = {
   WishlistItem: 'WishlistItem',
   Review: 'Review',
   Promotion: 'Promotion',
-  Seller: 'Seller',
-  Supplier: 'Supplier',
   Inventory: 'Inventory',
   CustomerSupportTicket: 'CustomerSupportTicket',
   UserRole: 'UserRole'
