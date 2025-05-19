@@ -1,3 +1,5 @@
+// prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -12,13 +14,15 @@ datasource db {
 
 model Customer {
   id            Int       @id @default(autoincrement())
+  auth0Id       String    @unique          // Auth0 user identifier :contentReference[oaicite:0]{index=0}
   name          String
-  email         String    @unique
-  password      String // Should be hashed in production
+  email         String    @unique          // Unique per customer :contentReference[oaicite:1]{index=1}
+  password      String?                              
   address       String?
   phoneNumber   String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime  @default(now())  // Populated on insert :contentReference[oaicite:2]{index=2}
+  updatedAt     DateTime  @updatedAt       // Updated on each modification :contentReference[oaicite:3]{index=3}
+
   orders        Order[]
   cart          Cart?
   wishlist      Wishlist?
@@ -58,7 +62,7 @@ model Order {
   customerId    Int
   orderDate     DateTime  @default(now())
   totalPrice    Float
-  status        String // e.g., "pending", "completed", "cancelled"
+  status        String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   customer      Customer  @relation(fields: [customerId], references: [id])
@@ -72,7 +76,7 @@ model OrderItem {
   orderId       Int
   productId     Int
   quantity      Int
-  price         Float // Price at the time of order
+  price         Float
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   order         Order     @relation(fields: [orderId], references: [id])
@@ -83,7 +87,7 @@ model Payment {
   id            Int       @id @default(autoincrement())
   orderId       Int       @unique
   paymentDate   DateTime  @default(now())
-  paymentMethod String // e.g., "credit_card", "paypal"
+  paymentMethod String
   amount        Float
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -91,14 +95,14 @@ model Payment {
 }
 
 model Shipment {
-  id            Int       @id @default(autoincrement())
-  orderId       Int       @unique
-  shipmentDate  DateTime
-  address       String
+  id             Int       @id @default(autoincrement())
+  orderId        Int       @unique
+  shipmentDate   DateTime
+  address        String
   trackingNumber String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  order         Order     @relation(fields: [orderId], references: [id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  order          Order     @relation(fields: [orderId], references: [id])
 }
 
 // Advanced Entities
@@ -146,7 +150,7 @@ model Review {
   id            Int       @id @default(autoincrement())
   productId     Int
   customerId    Int
-  rating        Int // e.g., 1 to 5
+  rating        Int
   comment       String?
   reviewDate    DateTime  @default(now())
   createdAt     DateTime  @default(now())
@@ -171,7 +175,7 @@ model Inventory {
   quantity         Int
   warehouseLocation String?
   createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
   product          Product   @relation(fields: [productId], references: [id])
 }
 
@@ -180,7 +184,7 @@ model CustomerSupportTicket {
   customerId    Int
   subject       String
   message       String
-  status        String // e.g., "open", "closed"
+  status        String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   customer      Customer  @relation(fields: [customerId], references: [id])
@@ -188,8 +192,8 @@ model CustomerSupportTicket {
 
 model UserRole {
   id            Int       @id @default(autoincrement())
-  roleName      String // e.g., "admin", "customer"
-  permissions   String // JSON or comma-separated permissions
+  roleName      String
+  permissions   String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
