@@ -1,8 +1,12 @@
-// app.ts
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import productsRouter from './routes/products.route.js'; // Adjust the path as needed
-import categoriesRouter from './routes/categories.route.js'; // Adjust the path as needed
+import pkg from 'express-openid-connect';
+import config from './config/index.js'
+
+const { auth, requiresAuth } = pkg;;
+
+import productsRouter from './routes/products.route.js';
+import categoriesRouter from './routes/categories.route.js';
 
 const app = express();
 
@@ -11,11 +15,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// ✅ Auth0 Middleware
+app.use(auth(config.auth0));
+
+// Optional Protected Route (you can test login here)
+app.get('/profile', requiresAuth(), (req: Request, res: Response) => {
+  const { user } = req.oidc;
+  res.json({ user });
+});
+
 // API Routes
 app.use('/api/products', productsRouter);
 app.use('/api/categories', categoriesRouter);
 
-// Health Check Endpoint
+// Health Check
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'OK' });
 });
