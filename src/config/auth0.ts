@@ -1,12 +1,32 @@
+import dotenv from 'dotenv';
 import { ConfigParams } from 'express-openid-connect';
 import { upsertUser } from '../middlewares/auth.middleware.js';
+import jwt from 'jsonwebtoken';
+
+dotenv.config();
 
 export const authConfig: ConfigParams = {
-  issuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL!,
-  baseURL:       process.env.BASE_URL!,
-  clientID:      process.env.AUTH0_CLIENT_ID!,
-  secret:        process.env.AUTH0_CLIENT_SECRET!,
-  authRequired:  false,
-  auth0Logout:   true,
-  afterCallback: async (_req, _res, session) => upsertUser(session)
+  issuerBaseURL: process.env.AUTH_ISSUER_BASEURL!, // e.g., https://codemindscape.us.auth0.com
+  baseURL: process.env.AUTH_BASEURL!, // e.g., http://localhost:3000
+  clientID: process.env.AUTH_CLIENTID!,
+  clientSecret: process.env.AUTH_CLIENT_SECRET!,
+  secret: process.env.AUTH_SECRET!,
+  authRequired: false,
+  auth0Logout: true,
+  authorizationParams: {
+    response_type: 'code',
+    scope: 'openid profile email',
+  },
+  afterCallback: async (_req, _res, session) => {
+    console.log('Session in afterCallback:', JSON.stringify(session, null, 2));
+    if (!session.user) {
+      console.warn('No session.user, decoding id_token:', session.id_token);
+      const userData = session.id_token ? jwt.decode(session.id_token) : null;
+      if (!userData) {
+        throw new Error('No user data found in session or id_token.');
+      }
+      session.user = userData;
+    }
+    return await upsertUser(session);
+  },
 };
