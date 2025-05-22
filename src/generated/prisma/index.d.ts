@@ -8493,6 +8493,9 @@ export namespace Prisma {
     paymentDate: Date | null
     paymentMethod: string | null
     amount: number | null
+    stripePaymentId: string | null
+    status: string | null
+    currency: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -8503,6 +8506,9 @@ export namespace Prisma {
     paymentDate: Date | null
     paymentMethod: string | null
     amount: number | null
+    stripePaymentId: string | null
+    status: string | null
+    currency: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -8513,6 +8519,9 @@ export namespace Prisma {
     paymentDate: number
     paymentMethod: number
     amount: number
+    stripePaymentId: number
+    status: number
+    currency: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -8537,6 +8546,9 @@ export namespace Prisma {
     paymentDate?: true
     paymentMethod?: true
     amount?: true
+    stripePaymentId?: true
+    status?: true
+    currency?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8547,6 +8559,9 @@ export namespace Prisma {
     paymentDate?: true
     paymentMethod?: true
     amount?: true
+    stripePaymentId?: true
+    status?: true
+    currency?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -8557,6 +8572,9 @@ export namespace Prisma {
     paymentDate?: true
     paymentMethod?: true
     amount?: true
+    stripePaymentId?: true
+    status?: true
+    currency?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -8654,6 +8672,9 @@ export namespace Prisma {
     paymentDate: Date
     paymentMethod: string
     amount: number
+    stripePaymentId: string | null
+    status: string
+    currency: string
     createdAt: Date
     updatedAt: Date
     _count: PaymentCountAggregateOutputType | null
@@ -8683,6 +8704,9 @@ export namespace Prisma {
     paymentDate?: boolean
     paymentMethod?: boolean
     amount?: boolean
+    stripePaymentId?: boolean
+    status?: boolean
+    currency?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -8694,6 +8718,9 @@ export namespace Prisma {
     paymentDate?: boolean
     paymentMethod?: boolean
     amount?: boolean
+    stripePaymentId?: boolean
+    status?: boolean
+    currency?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -8705,6 +8732,9 @@ export namespace Prisma {
     paymentDate?: boolean
     paymentMethod?: boolean
     amount?: boolean
+    stripePaymentId?: boolean
+    status?: boolean
+    currency?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     order?: boolean | OrderDefaultArgs<ExtArgs>
@@ -8716,11 +8746,14 @@ export namespace Prisma {
     paymentDate?: boolean
     paymentMethod?: boolean
     amount?: boolean
+    stripePaymentId?: boolean
+    status?: boolean
+    currency?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "paymentDate" | "paymentMethod" | "amount" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
+  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "paymentDate" | "paymentMethod" | "amount" | "stripePaymentId" | "status" | "currency" | "createdAt" | "updatedAt", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     order?: boolean | OrderDefaultArgs<ExtArgs>
   }
@@ -8742,6 +8775,9 @@ export namespace Prisma {
       paymentDate: Date
       paymentMethod: string
       amount: number
+      stripePaymentId: string | null
+      status: string
+      currency: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["payment"]>
@@ -9173,6 +9209,9 @@ export namespace Prisma {
     readonly paymentDate: FieldRef<"Payment", 'DateTime'>
     readonly paymentMethod: FieldRef<"Payment", 'String'>
     readonly amount: FieldRef<"Payment", 'Float'>
+    readonly stripePaymentId: FieldRef<"Payment", 'String'>
+    readonly status: FieldRef<"Payment", 'String'>
+    readonly currency: FieldRef<"Payment", 'String'>
     readonly createdAt: FieldRef<"Payment", 'DateTime'>
     readonly updatedAt: FieldRef<"Payment", 'DateTime'>
   }
@@ -20731,6 +20770,9 @@ export namespace Prisma {
     paymentDate: 'paymentDate',
     paymentMethod: 'paymentMethod',
     amount: 'amount',
+    stripePaymentId: 'stripePaymentId',
+    status: 'status',
+    currency: 'currency',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -21338,6 +21380,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFilter<"Payment"> | Date | string
     paymentMethod?: StringFilter<"Payment"> | string
     amount?: FloatFilter<"Payment"> | number
+    stripePaymentId?: StringNullableFilter<"Payment"> | string | null
+    status?: StringFilter<"Payment"> | string
+    currency?: StringFilter<"Payment"> | string
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
@@ -21349,6 +21394,9 @@ export namespace Prisma {
     paymentDate?: SortOrder
     paymentMethod?: SortOrder
     amount?: SortOrder
+    stripePaymentId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    currency?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     order?: OrderOrderByWithRelationInput
@@ -21363,6 +21411,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFilter<"Payment"> | Date | string
     paymentMethod?: StringFilter<"Payment"> | string
     amount?: FloatFilter<"Payment"> | number
+    stripePaymentId?: StringNullableFilter<"Payment"> | string | null
+    status?: StringFilter<"Payment"> | string
+    currency?: StringFilter<"Payment"> | string
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
     order?: XOR<OrderScalarRelationFilter, OrderWhereInput>
@@ -21374,6 +21425,9 @@ export namespace Prisma {
     paymentDate?: SortOrder
     paymentMethod?: SortOrder
     amount?: SortOrder
+    stripePaymentId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    currency?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
@@ -21392,6 +21446,9 @@ export namespace Prisma {
     paymentDate?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     paymentMethod?: StringWithAggregatesFilter<"Payment"> | string
     amount?: FloatWithAggregatesFilter<"Payment"> | number
+    stripePaymentId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    status?: StringWithAggregatesFilter<"Payment"> | string
+    currency?: StringWithAggregatesFilter<"Payment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
   }
@@ -22425,6 +22482,9 @@ export namespace Prisma {
     paymentDate?: Date | string
     paymentMethod: string
     amount: number
+    stripePaymentId?: string | null
+    status?: string
+    currency?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     order: OrderCreateNestedOneWithoutPaymentInput
@@ -22436,6 +22496,9 @@ export namespace Prisma {
     paymentDate?: Date | string
     paymentMethod: string
     amount: number
+    stripePaymentId?: string | null
+    status?: string
+    currency?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22444,6 +22507,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     order?: OrderUpdateOneRequiredWithoutPaymentNestedInput
@@ -22455,6 +22521,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22465,6 +22534,9 @@ export namespace Prisma {
     paymentDate?: Date | string
     paymentMethod: string
     amount: number
+    stripePaymentId?: string | null
+    status?: string
+    currency?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -22473,6 +22545,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -22483,6 +22558,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -23562,6 +23640,9 @@ export namespace Prisma {
     paymentDate?: SortOrder
     paymentMethod?: SortOrder
     amount?: SortOrder
+    stripePaymentId?: SortOrder
+    status?: SortOrder
+    currency?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23578,6 +23659,9 @@ export namespace Prisma {
     paymentDate?: SortOrder
     paymentMethod?: SortOrder
     amount?: SortOrder
+    stripePaymentId?: SortOrder
+    status?: SortOrder
+    currency?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -23588,6 +23672,9 @@ export namespace Prisma {
     paymentDate?: SortOrder
     paymentMethod?: SortOrder
     amount?: SortOrder
+    stripePaymentId?: SortOrder
+    status?: SortOrder
+    currency?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -25707,6 +25794,9 @@ export namespace Prisma {
     paymentDate?: Date | string
     paymentMethod: string
     amount: number
+    stripePaymentId?: string | null
+    status?: string
+    currency?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25716,6 +25806,9 @@ export namespace Prisma {
     paymentDate?: Date | string
     paymentMethod: string
     amount: number
+    stripePaymentId?: string | null
+    status?: string
+    currency?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -25820,6 +25913,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -25829,6 +25925,9 @@ export namespace Prisma {
     paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
     paymentMethod?: StringFieldUpdateOperationsInput | string
     amount?: FloatFieldUpdateOperationsInput | number
+    stripePaymentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    currency?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -84,15 +84,20 @@ model OrderItem {
 }
 
 model Payment {
-  id            Int       @id @default(autoincrement())
-  orderId       Int       @unique
-  paymentDate   DateTime  @default(now())
-  paymentMethod String
-  amount        Float
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  order         Order     @relation(fields: [orderId], references: [id])
+  id              Int       @id @default(autoincrement())
+  orderId         Int       @unique
+  paymentDate     DateTime  @default(now())
+  paymentMethod   String
+  amount          Float
+  stripePaymentId String?   // Stripe's unique payment ID
+  status          String    @default("pending") // 'pending', 'succeeded', 'failed', etc.
+  currency        String    @default("usd")
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  order           Order     @relation(fields: [orderId], references: [id])
 }
+
 
 model Shipment {
   id             Int       @id @default(autoincrement())

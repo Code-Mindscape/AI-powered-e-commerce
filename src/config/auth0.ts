@@ -18,9 +18,7 @@ export const authConfig: ConfigParams = {
     scope: 'openid profile email',
   },
   afterCallback: async (_req, _res, session) => {
-    console.log('Session in afterCallback:', JSON.stringify(session, null, 2));
     if (!session.user) {
-      console.warn('No session.user, decoding id_token:', session.id_token);
       const userData = session.id_token ? jwt.decode(session.id_token) : null;
       if (!userData) {
         throw new Error('No user data found in session or id_token.');
