@@ -20,7 +20,7 @@ async function startServer() {
 
   // 2. Start HTTP server
   const server = app.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT} ✅ `);
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   });
 

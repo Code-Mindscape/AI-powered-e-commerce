@@ -8,6 +8,7 @@ import productsRouter from './routes/products.route.js';
 import categoriesRouter from './routes/categories.route.js';
 
 import { errorHandler } from './middlewares/error.middleware.js';
+import { configureCloudinary } from './config/cloudinary.js';
 
 const { auth, requiresAuth } = pkg;
 const app = express();
@@ -16,6 +17,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+// —————— Cloudinary Config call ——————
+configureCloudinary();
+
 
 // —————— Session & Auth0 ——————
 app.use(
