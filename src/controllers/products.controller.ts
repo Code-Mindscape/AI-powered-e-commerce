@@ -1,31 +1,44 @@
 import { Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '../generated/prisma/client.js';
+import upload from '../middlewares/multer.middleware.js';
 
 const prisma = new PrismaClient();
 
 // Create a new product
 const createProduct = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { sku, name, description, price, stock, categoryId, sellerId, supplierId } = req.body;
+    // Use Multer middleware to handle single file upload (field name: 'image')
+    upload.single('image')(req, res, async (err: any) => {
+      if (err) {
+        return res.status(400).json({ message: 'File upload error', error: err.message });
+      }
 
-    // Basic validation
-    if (!sku || !name || price == null || stock == null || !categoryId) {
-      res.status(400).json({ message: 'Missing required fields' });
-      return
-    }
-    const data = {
-      sku,
-      name,
-      description: description || undefined,
-      price: Number(price),
-      stock: Number(stock),
-      categoryId: Number(categoryId),
-      sellerId: sellerId !== undefined ? Number(sellerId) : undefined,
-      supplierId: supplierId !== undefined ? Number(supplierId) : undefined,
-    };
+      const { sku, name, description, price, stock, categoryId, sellerId, supplierId } = req.body;
 
-    const product = await prisma.product.create({ data });
-    res.status(201).json(product);
+      // Basic validation
+      if (!sku || !name || price == null || stock == null || !categoryId) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+
+      const data = {
+        sku,
+        name,
+        description: description || undefined,
+        price: Number(price),
+        stock: Number(stock),
+        categoryId: Number(categoryId),
+        sellerId: sellerId !== undefined ? Number(sellerId) : undefined,
+        supplierId: supplierId !== undefined ? Number(supplierId) : undefined,
+        imageUrl: req.file ? req.file.path : undefined, // Add image path if uploaded
+      };
+
+      const product = await prisma.product.create({ data });
+      res.status(201).json({
+        message: 'Product created successfully',
+        product,
+        image: req.file ? { filename: req.file.filename, path: req.file.path, size: req.file.size } : null,
+      });
+    });
   } catch (error) {
     next(error);
   }
