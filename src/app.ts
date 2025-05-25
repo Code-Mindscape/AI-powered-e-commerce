@@ -3,15 +3,28 @@ import cors from 'cors';
 import session from 'express-session';
 import pkg from 'express-openid-connect';
 import { authConfig } from './config/auth0.js';
-
 import productsRouter from './routes/products.route.js';
 import categoriesRouter from './routes/categories.route.js';
-
 import { errorHandler } from './middlewares/error.middleware.js';
 import { configureCloudinary } from './config/cloudinary.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import fs from 'fs';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const { auth, requiresAuth } = pkg;
 const app = express();
+
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+// ✅ Serve uploads statically from src/uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // —————— Global Middleware ——————
 app.use(cors());
@@ -21,7 +34,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // —————— Cloudinary Config call ——————
 configureCloudinary();
-
 
 // —————— Session & Auth0 ——————
 app.use(

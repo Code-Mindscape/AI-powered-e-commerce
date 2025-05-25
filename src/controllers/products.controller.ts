@@ -6,48 +6,29 @@ const prisma = new PrismaClient();
 const cloudinaryService = new CloudinaryService();
 
 // Create a new product
-const createProduct = async (req: Request, res: Response, next: NextFunction) => {
+const createProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
-    const { sku, name, description, price, stock, categoryId, sellerId, supplierId } = req.body;
+    const { sku, name, price, stock, categoryId, sellerId, supplierId } = req.body;
 
-    // Basic validation
     if (!sku || !name || price == null || stock == null || !categoryId) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
-    // Check for duplicate SKU
     const existingProduct = await prisma.product.findUnique({ where: { sku } });
     if (existingProduct) {
       return res.status(400).json({ message: 'SKU already exists' });
     }
 
-    // Validate categoryId exists
     const category = await prisma.category.findUnique({ where: { id: Number(categoryId) } });
     if (!category) {
       return res.status(400).json({ message: 'Invalid categoryId' });
     }
 
-    const productData = {
-      sku,
-      name,
-      description: description || undefined,
-      price: Number(price),
-      stock: Number(stock),
-      categoryId: Number(categoryId),
-      sellerId: sellerId !== undefined ? Number(sellerId) : undefined,
-      supplierId: supplierId !== undefined ? Number(supplierId) : undefined,
-    };
-
-    const product = await prisma.product.create({
-      data: productData,
-      include: { images: true },
-    });
-
     const files = req.files as Express.Multer.File[];
     let uploadedImages: ProductImage[] = [];
+    let productImageId: number | null = null;
 
-    if (files && files.length > 0) {
-      // Convert Multer file buffers to base64 for Cloudinary upload
+    if (files?.length) {
       const uploadPromises = files.map(file => {
         const base64Image = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
         return cloudinaryService.uploadImage(base64Image);
@@ -55,14 +36,36 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
 
       const imageUrls = await Promise.all(uploadPromises);
 
-      // Create ProductImage records for each uploaded image
-      const imageData = imageUrls.map(url => ({
-        productId: product.id,
-        imageUrl: url,
-      }));
+      const productImage = await prisma.productImage.create({
+        data: {
+          productId: null,
+          imagesUrls: imageUrls,
+        },
+      });
 
-      await prisma.productImage.createMany({
-        data: imageData,
+      productImageId = productImage.id;
+    }
+
+    const productData = {
+      sku,
+      name,
+      price: Number(price),
+      stock: Number(stock),
+      categoryId: Number(categoryId),
+      sellerId: sellerId ? Number(sellerId) : undefined,
+      supplierId: supplierId ? Number(supplierId) : undefined,
+      images: productImageId ? { connect: [{ id: productImageId }] } : undefined,
+    };
+
+    const product = await prisma.product.create({
+      data: productData,
+      include: { images: true },
+    });
+
+    if (productImageId) {
+      await prisma.productImage.update({
+        where: { id: productImageId },
+        data: { productId: product.id },
       });
 
       uploadedImages = await prisma.productImage.findMany({
@@ -76,7 +79,7 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
         ...product,
         images: uploadedImages,
       },
-      imageUrls: uploadedImages.map(image => image.imageUrl),
+      imageUrls: uploadedImages.flatMap(image => image.imagesUrls),
     });
   } catch (error) {
     next(error);
@@ -84,69 +87,70 @@ const createProduct = async (req: Request, res: Response, next: NextFunction) =>
 };
 
 // Get all products
-const getProducts = async (req: Request, res: Response, next: NextFunction) => {
+const getProducts = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
-    const items = await prisma.product.findMany({
+    const products = await prisma.product.findMany({
       include: {
         images: true,
         category: true,
       },
     });
-    res.json(items);
+    res.json(products);
   } catch (error) {
     next(error);
   }
 };
 
-// Get a single product by ID
-const getProductById = async (req: Request, res: Response, next: NextFunction) => {
+// Get single product by ID
+const getProductById = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
       return res.status(400).json({ message: 'Invalid ID' });
     }
 
-    const item = await prisma.product.findUnique({
+    const product = await prisma.product.findUnique({
       where: { id },
       include: {
         images: true,
         category: true,
       },
     });
-    if (!item) {
+
+    if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    res.json(item);
+    res.json(product);
   } catch (error) {
     next(error);
   }
 };
 
-// Update a product
-const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+// Update product
+const updateProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
       return res.status(400).json({ message: 'Invalid ID' });
     }
 
-    const { sku, name, description, price, stock, categoryId, sellerId, supplierId } = req.body;
+    const { sku, name, price, stock, categoryId, sellerId, supplierId } = req.body;
     const data: Record<string, any> = {};
 
-    if (sku !== undefined) {
-      const existingProduct = await prisma.product.findFirst({
-        where: { sku, NOT: { id } },
-      });
+    const product = await prisma.product.findUnique({ where: { id } });
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    if (sku !== undefined && sku !== product.sku) {
+      const existingProduct = await prisma.product.findUnique({ where: { sku } });
       if (existingProduct) {
         return res.status(400).json({ message: 'SKU already exists' });
       }
       data.sku = sku;
     }
-    if (name !== undefined) data.name = name;
-    if (description !== undefined) data.description = description;
-    if (price !== undefined) data.price = Number(price);
-    if (stock !== undefined) data.stock = Number(stock);
+
     if (categoryId !== undefined) {
       const category = await prisma.category.findUnique({ where: { id: Number(categoryId) } });
       if (!category) {
@@ -154,36 +158,32 @@ const updateProduct = async (req: Request, res: Response, next: NextFunction) =>
       }
       data.categoryId = Number(categoryId);
     }
+
+    if (name !== undefined) data.name = name;
+    if (price !== undefined) data.price = Number(price);
+    if (stock !== undefined) data.stock = Number(stock);
     if (sellerId !== undefined) data.sellerId = Number(sellerId);
     if (supplierId !== undefined) data.supplierId = Number(supplierId);
-
-    const product = await prisma.product.findUnique({ where: { id } });
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
-    }
 
     const files = req.files as Express.Multer.File[];
     let updatedImages: ProductImage[] = [];
 
-    if (files && files.length > 0) {
-      // Delete existing images from Cloudinary and database
+    if (files?.length) {
       const existingImages = await prisma.productImage.findMany({
         where: { productId: id },
       });
 
-      // Delete from Cloudinary using CloudinaryService
-      const deletePromises = existingImages.map(image => {
-        const publicId = image.imageUrl.split('/').pop()?.split('.')[0] || '';
-        return cloudinaryService.deleteImage(`ecommerce/products/${publicId}`);
-      });
-      await Promise.all(deletePromises);
+      for (const image of existingImages) {
+        for (const url of image.imagesUrls) {
+          const publicId = url.split('/').pop()?.split('.')[0];
+          if (publicId) await cloudinaryService.deleteImage(publicId);
+        }
+      }
 
-      // Delete from database
       await prisma.productImage.deleteMany({
         where: { productId: id },
       });
 
-      // Upload new images to Cloudinary
       const uploadPromises = files.map(file => {
         const base64Image = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
         return cloudinaryService.uploadImage(base64Image);
@@ -191,49 +191,44 @@ const updateProduct = async (req: Request, res: Response, next: NextFunction) =>
 
       const imageUrls = await Promise.all(uploadPromises);
 
-      // Create new ProductImage records
-      const imageData = imageUrls.map(url => ({
-        productId: id,
-        imageUrl: url,
-      }));
-
-      await prisma.productImage.createMany({
-        data: imageData,
+      const newImage = await prisma.productImage.create({
+        data: {
+          productId: id,
+          imagesUrls: imageUrls,
+        },
       });
 
-      updatedImages = await prisma.productImage.findMany({
-        where: { productId: id },
-      });
+      updatedImages = [newImage];
     } else {
       updatedImages = await prisma.productImage.findMany({
         where: { productId: id },
       });
     }
 
-    const updated = await prisma.product.update({
+    const updatedProduct = await prisma.product.update({
       where: { id },
       data,
       include: {
-        images: true,
         category: true,
+        images: true
       },
     });
 
     res.json({
       message: 'Product updated successfully',
       product: {
-        ...updated,
+        ...updatedProduct,
         images: updatedImages,
       },
-      imageUrls: updatedImages.map(image => image.imageUrl),
+      imageUrls: updatedImages.flatMap(img => img.imagesUrls),
     });
   } catch (error) {
     next(error);
   }
 };
 
-// Delete a product
-const deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+// Delete product
+const deleteProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const id = Number(req.params.id);
     if (Number.isNaN(id)) {
@@ -245,30 +240,33 @@ const deleteProduct = async (req: Request, res: Response, next: NextFunction) =>
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    // Delete associated images from Cloudinary and database
-    const existingImages = await prisma.productImage.findMany({
+    const productImages = await prisma.productImage.findMany({
       where: { productId: id },
     });
 
-    const deletePromises = existingImages.map(image => {
-      const publicId = image.imageUrl.split('/').pop()?.split('.')[0] || '';
-      return cloudinaryService.deleteImage(`ecommerce/products/${publicId}`);
-    });
-    await Promise.all(deletePromises);
+    for (const image of productImages) {
+      for (const url of image.imagesUrls) {
+        const publicId = url.split('/').pop()?.split('.')[0];
+        if (publicId) await cloudinaryService.deleteImage(publicId);
+      }
+    }
 
     await prisma.productImage.deleteMany({
       where: { productId: id },
     });
 
-    await prisma.product.delete({ where: { id } });
+    await prisma.product.delete({
+      where: { id },
+    });
+
     res.sendStatus(204);
   } catch (error) {
     next(error);
   }
 };
 
-// Search products by name
-const searchProducts = async (req: Request, res: Response, next: NextFunction) => {
+// Search products
+const searchProducts = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const nameQuery = String(req.query.name || '');
     if (!nameQuery) {
@@ -276,7 +274,12 @@ const searchProducts = async (req: Request, res: Response, next: NextFunction) =
     }
 
     const results = await prisma.product.findMany({
-      where: { name: { contains: nameQuery, mode: 'insensitive' } },
+      where: { 
+        name: { 
+          contains: nameQuery, 
+          mode: 'insensitive' 
+        } 
+      },
       include: {
         images: true,
         category: true,
@@ -289,7 +292,6 @@ const searchProducts = async (req: Request, res: Response, next: NextFunction) =
   }
 };
 
-// Export all handlers
 export {
   createProduct,
   getProducts,

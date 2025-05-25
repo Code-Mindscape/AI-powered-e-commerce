@@ -45,15 +45,16 @@ model Product {
   wishlistItems WishlistItem[]
   reviews       Review[]
   inventory     Inventory?
-  images        ProductImage[] // Add relation to ProductImage  description   String?
+  images        ProductImage[] // Relation to ProductImage
+  description   String?
 }
 
 model ProductImage {
-  id        Int      @id @default(autoincrement())
-  productId Int
-  imageUrl  String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  productId  Int? // Nullable to allow creation without Product ID
+  imagesUrls String[] // Array of image URLs
+  product    Product? @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
 }
 
 model Category {

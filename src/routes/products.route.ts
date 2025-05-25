@@ -7,10 +7,11 @@ import {
   deleteProduct,
   searchProducts,
 } from '../controllers/products.controller.js';
+import upload from '../middlewares/multer.middleware.js';
 
 const router = Router();
 
-router.post('/add', createProduct);
+router.post('/add',upload.array('images', 4), createProduct);
 router.get('/all', getProducts);
 router.get('/search', searchProducts);
 router.get('/:id', getProductById);

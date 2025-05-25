@@ -140,13 +140,14 @@ exports.Prisma.ProductScalarFieldEnum = {
   stock: 'stock',
   categoryId: 'categoryId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  description: 'description'
 };
 
 exports.Prisma.ProductImageScalarFieldEnum = {
   id: 'id',
   productId: 'productId',
-  imageUrl: 'imageUrl',
+  imagesUrls: 'imagesUrls',
   createdAt: 'createdAt'
 };
 
