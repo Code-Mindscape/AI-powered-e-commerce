@@ -1,11 +1,11 @@
 // src/controllers/customer.controller.ts
-
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '../generated/prisma/client.js';
+import { catchAsync } from '../utils/CatchAsync.js';
 
 const prisma = new PrismaClient();
 
-export async function getProfile(req: Request, res: Response) {
+export const getProfile = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const auth0Id = req.oidc.user?.sub;
   if (!auth0Id) {
     return res.sendStatus(401);
@@ -19,4 +19,4 @@ export async function getProfile(req: Request, res: Response) {
     return res.sendStatus(404); // Not Found
   }
   return res.json(customer);
-}
+});

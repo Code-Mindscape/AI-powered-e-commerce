@@ -78,8 +78,7 @@ const createProduct = catchAsync(async (req: Request, res: Response, next: NextF
     product: {
       ...product,
       images: uploadedImages,
-    },
-    imageUrls: uploadedImages.flatMap(image => image.imagesUrls),
+    }
   });
 });
 
