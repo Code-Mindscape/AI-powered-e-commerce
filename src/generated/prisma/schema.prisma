@@ -10,19 +10,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
 // Core Entities
 
-model Customer {
-  id          Int      @id @default(autoincrement())
-  auth0Id     String   @unique // Auth0 user identifier :contentReference[oaicite:0]{index=0}
-  name        String
-  email       String   @unique // Unique per customer :contentReference[oaicite:1]{index=1}
-  password    String?
-  address     String?
-  phoneNumber String?
-  createdAt   DateTime @default(now()) // Populated on insert :contentReference[oaicite:2]{index=2}
-  updatedAt   DateTime @updatedAt // Updated on each modification :contentReference[oaicite:3]{index=3}
+model Admin {
+  id         Int       @id @default(autoincrement())
+  auth0Id    String    @unique
+  name       String
+  email      String    @unique
+  password   String?
+  role       Role      @default(ADMIN)
+  mfaEnabled Boolean   @default(false)
+  mfaSecret  String?
+  lastLogin  DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  adminType  String    @unique @default("PRIMARY_ADMIN")
 
+  // Optimizations
+  @@index([email])
+  @@index([auth0Id])
+  @@index([createdAt])
+}
+
+model Customer {
+  id             Int                     @id @default(autoincrement())
+  auth0Id        String                  @unique // Auth0 user identifier :contentReference[oaicite:0]{index=0}
+  name           String
+  email          String                  @unique // Unique per customer :contentReference[oaicite:1]{index=1}
+  password       String?
+  address        String?
+  phoneNumber    String?
+  createdAt      DateTime                @default(now()) // Populated on insert :contentReference[oaicite:2]{index=2}
+  updatedAt      DateTime                @updatedAt // Updated on each modification :contentReference[oaicite:3]{index=3}
+  role           Role                    @default(CUSTOMER)
   orders         Order[]
   cart           Cart?
   wishlist       Wishlist?

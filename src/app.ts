@@ -11,6 +11,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs';
+import adminRouter from './routes/admin/admin.routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -62,6 +63,7 @@ app.get('/health', (req: Request, res: Response) => {
 // —————— API Routes ——————
 app.use('/api/products', productsRouter);
 app.use('/api/categories', categoriesRouter);
+app.use('/api/admin', adminRouter);
 
 // —————— Global Error Handler ——————
 app.use(errorHandler);

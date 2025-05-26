@@ -1,6 +1,7 @@
 // src/server.ts
 
-import 'dotenv/config';                // Load .env vars
+import dotenv from 'dotenv';
+dotenv.config(); 
 import app from './app.js';           // Your Express app (with Auth0 & routes)
 // import { getRedisClient } from './config/redis.js';
 

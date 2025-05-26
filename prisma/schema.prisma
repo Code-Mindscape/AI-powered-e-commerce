@@ -10,7 +10,32 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
 // Core Entities
+
+model Admin {
+  id              Int       @id @default(autoincrement())
+  auth0Id         String    @unique
+  name            String
+  email           String    @unique
+  password        String?
+  role            Role      @default(ADMIN)
+  mfaEnabled      Boolean   @default(false)
+  mfaSecret       String?
+  lastLogin       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  adminType       String    @default("PRIMARY_ADMIN") @unique
+
+  // Optimizations
+  @@index([email])
+  @@index([auth0Id])
+  @@index([createdAt])
+}
 
 model Customer {
   id            Int       @id @default(autoincrement())
@@ -22,13 +47,14 @@ model Customer {
   phoneNumber   String?
   createdAt     DateTime  @default(now())  // Populated on insert :contentReference[oaicite:2]{index=2}
   updatedAt     DateTime  @updatedAt       // Updated on each modification :contentReference[oaicite:3]{index=3}
-
+  role          Role   @default(CUSTOMER)
   orders        Order[]
   cart          Cart?
   wishlist      Wishlist?
   reviews       Review[]
   supportTickets CustomerSupportTicket[]
 }
+
 
 model Product {
   id            Int       @id @default(autoincrement())
