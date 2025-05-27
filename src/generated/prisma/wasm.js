@@ -208,16 +208,6 @@ exports.Prisma.PaymentScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ShipmentScalarFieldEnum = {
-  id: 'id',
-  orderId: 'orderId',
-  shipmentDate: 'shipmentDate',
-  address: 'address',
-  trackingNumber: 'trackingNumber',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.CartScalarFieldEnum = {
   id: 'id',
   customerId: 'customerId',
@@ -325,7 +315,6 @@ exports.Prisma.ModelName = {
   Order: 'Order',
   OrderItem: 'OrderItem',
   Payment: 'Payment',
-  Shipment: 'Shipment',
   Cart: 'Cart',
   CartItem: 'CartItem',
   Wishlist: 'Wishlist',

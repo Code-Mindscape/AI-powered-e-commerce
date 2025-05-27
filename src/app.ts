@@ -5,6 +5,7 @@ import pkg from 'express-openid-connect';
 import { authConfig } from './config/auth0.js';
 import productsRouter from './routes/products.route.js';
 import categoriesRouter from './routes/categories.route.js';
+import ordersRouter from './routes/order.routes.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 import { configureCloudinary } from './config/cloudinary.js';
 import path from 'path';
@@ -63,6 +64,7 @@ app.get('/health', (req: Request, res: Response) => {
 // —————— API Routes ——————
 app.use('/api/products', productsRouter);
 app.use('/api/categories', categoriesRouter);
+app.use('/api/orders', ordersRouter);
 app.use('/api/admin', adminRouter);
 
 // —————— Global Error Handler ——————

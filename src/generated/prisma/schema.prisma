@@ -96,13 +96,12 @@ model Order {
   customerId Int
   orderDate  DateTime    @default(now())
   totalPrice Float
-  status     String
+  status     String      @default("Pending")
   createdAt  DateTime    @default(now())
   updatedAt  DateTime    @updatedAt
   customer   Customer    @relation(fields: [customerId], references: [id])
   orderItems OrderItem[]
   payment    Payment?
-  shipment   Shipment?
 }
 
 model OrderItem {
@@ -130,17 +129,6 @@ model Payment {
   updatedAt       DateTime @updatedAt
 
   order Order @relation(fields: [orderId], references: [id])
-}
-
-model Shipment {
-  id             Int      @id @default(autoincrement())
-  orderId        Int      @unique
-  shipmentDate   DateTime
-  address        String
-  trackingNumber String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  order          Order    @relation(fields: [orderId], references: [id])
 }
 
 // Advanced Entities
