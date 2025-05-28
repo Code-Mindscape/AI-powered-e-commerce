@@ -50,28 +50,26 @@ model Customer {
   role           Role                    @default(CUSTOMER)
   orders         Order[]
   cart           Cart?
-  wishlist       Wishlist?
   reviews        Review[]
   supportTickets CustomerSupportTicket[]
 }
 
 model Product {
-  id            Int            @id @default(autoincrement())
-  sku           String         @unique
-  name          String
-  price         Float
-  stock         Int
-  categoryId    Int
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  category      Category       @relation(fields: [categoryId], references: [id])
-  orderItems    OrderItem[]
-  cartItems     CartItem[]
-  wishlistItems WishlistItem[]
-  reviews       Review[]
-  inventory     Inventory?
-  images        ProductImage[] // Relation to ProductImage
-  description   String?
+  id          Int            @id @default(autoincrement())
+  sku         String         @unique
+  name        String
+  price       Float
+  stock       Int
+  categoryId  Int
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  category    Category       @relation(fields: [categoryId], references: [id])
+  orderItems  OrderItem[]
+  cartItems   CartItem[]
+  reviews     Review[]
+  inventory   Inventory?
+  images      ProductImage[] // Relation to ProductImage
+  description String?
 }
 
 model ProductImage {
@@ -151,25 +149,6 @@ model CartItem {
   updatedAt DateTime @updatedAt
   cart      Cart     @relation(fields: [cartId], references: [id])
   product   Product  @relation(fields: [productId], references: [id])
-}
-
-model Wishlist {
-  id            Int            @id @default(autoincrement())
-  customerId    Int            @unique
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  customer      Customer       @relation(fields: [customerId], references: [id])
-  wishlistItems WishlistItem[]
-}
-
-model WishlistItem {
-  id         Int      @id @default(autoincrement())
-  wishlistId Int
-  productId  Int
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  wishlist   Wishlist @relation(fields: [wishlistId], references: [id])
-  product    Product  @relation(fields: [productId], references: [id])
 }
 
 model Review {

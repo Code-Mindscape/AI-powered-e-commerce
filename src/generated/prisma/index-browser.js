@@ -224,21 +224,6 @@ exports.Prisma.CartItemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.WishlistScalarFieldEnum = {
-  id: 'id',
-  customerId: 'customerId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.WishlistItemScalarFieldEnum = {
-  id: 'id',
-  wishlistId: 'wishlistId',
-  productId: 'productId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
   productId: 'productId',
@@ -317,8 +302,6 @@ exports.Prisma.ModelName = {
   Payment: 'Payment',
   Cart: 'Cart',
   CartItem: 'CartItem',
-  Wishlist: 'Wishlist',
-  WishlistItem: 'WishlistItem',
   Review: 'Review',
   Promotion: 'Promotion',
   Inventory: 'Inventory',

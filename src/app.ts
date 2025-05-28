@@ -4,6 +4,7 @@ import session from 'express-session';
 import pkg from 'express-openid-connect';
 import { authConfig } from './config/auth0.js';
 import productsRouter from './routes/products.route.js';
+import inventoryRouter from './routes/inventory.route.js';
 import categoriesRouter from './routes/categories.route.js';
 import ordersRouter from './routes/order.routes.js';
 import cartsRouter from './routes/carts.route.js';
@@ -63,11 +64,12 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 // —————— API Routes ——————
+app.use('/api/admin', adminRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/carts', cartsRouter);
-app.use('/api/admin', adminRouter);
+app.use('/api/inventory', inventoryRouter);
 
 // —————— Global Error Handler ——————
 app.use(errorHandler);
