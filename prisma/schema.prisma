@@ -71,6 +71,8 @@ model Product {
   inventory     Inventory?
   images        ProductImage[] // Relation to ProductImage
   description   String?
+  Sale Sale[]
+
 }
 
 model ProductImage {
@@ -89,6 +91,7 @@ model Category {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   products      Product[]
+
 }
 
 model Order {
@@ -102,6 +105,8 @@ model Order {
   customer      Customer  @relation(fields: [customerId], references: [id])
   orderItems    OrderItem[]
   payment       Payment?
+  Sale Sale[]
+  
 }
 
 model OrderItem {
@@ -114,6 +119,8 @@ model OrderItem {
   updatedAt     DateTime  @updatedAt
   order         Order     @relation(fields: [orderId], references: [id])
   product       Product   @relation(fields: [productId], references: [id])
+
+  Sale Sale[]
 }
 
 model Payment {
@@ -175,6 +182,8 @@ model Promotion {
   endDate          DateTime
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
+  Sale Sale[]
+
 }
 
 model Inventory {
@@ -197,6 +206,32 @@ model CustomerSupportTicket {
   updatedAt     DateTime  @updatedAt
   customer      Customer  @relation(fields: [customerId], references: [id])
 }
+
+
+model Sale {
+  id             Int        @id @default(autoincrement())
+  orderId        Int
+  orderItemId    Int?                       // Optional: Use if tracking per item
+  promotionId    Int?                       // Optional: If a promotion was applied
+  productId      Int?                       // Optional: Useful for reporting
+  quantity       Int
+  totalAmount    Float                      // Total = quantity * price after discount
+  saleDate       DateTime   @default(now()) // Redundant but useful for reporting
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  // Relations
+  order          Order      @relation(fields: [orderId], references: [id])
+  orderItem      OrderItem? @relation(fields: [orderItemId], references: [id])
+  promotion      Promotion? @relation(fields: [promotionId], references: [id])
+  product        Product?   @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+  @@index([promotionId])
+  @@index([saleDate])
+}
+
 
 model UserRole {
   id            Int       @id @default(autoincrement())

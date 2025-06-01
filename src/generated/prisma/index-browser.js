@@ -264,6 +264,19 @@ exports.Prisma.CustomerSupportTicketScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SaleScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  orderItemId: 'orderItemId',
+  promotionId: 'promotionId',
+  productId: 'productId',
+  quantity: 'quantity',
+  totalAmount: 'totalAmount',
+  saleDate: 'saleDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.UserRoleScalarFieldEnum = {
   id: 'id',
   roleName: 'roleName',
@@ -306,6 +319,7 @@ exports.Prisma.ModelName = {
   Promotion: 'Promotion',
   Inventory: 'Inventory',
   CustomerSupportTicket: 'CustomerSupportTicket',
+  Sale: 'Sale',
   UserRole: 'UserRole'
 };
 
