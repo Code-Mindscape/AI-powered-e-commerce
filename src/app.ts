@@ -16,6 +16,7 @@ import categoriesRouter from './routes/categories.route.js';
 import ordersRouter from './routes/order.routes.js';
 import cartsRouter from './routes/carts.route.js';
 import salesRouter from './routes/sales.route.js';
+import reviewsRouter from './routes/reviews.route.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -71,6 +72,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/sales', salesRouter);
+app.use('/api/inventory', reviewsRouter);
 app.use('/api/inventory', inventoryRouter);
 
 // —————— Global Error Handler ——————
